@@ -1,7 +1,0 @@
----
-layout: default
-title: Patrick&#39;s Personal Space by pstrinkle
----
-<div class="blurb">
-	<p>Having some fun.</p>
-</div><!-- /.blurb -->
