@@ -7,4 +7,8 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
-nav ul li:before { content: ""; }
+nav ul li:before {
+    content: "";
+    margin-left: 0px;
+    margin-right: 0px;
+}
