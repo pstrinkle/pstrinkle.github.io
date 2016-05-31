@@ -50,7 +50,9 @@ title: my\ CV
   </div>
   <p class="small">
     I thought it'd be fun to try and compute how many years I spent actively developing in each technology 
-    to breakout my career in a pie graph.  It was a fun thing to do, but isn't terribly accurate.
+    to breakout my career in a pie graph.  It was a fun thing to do, but isn't terribly accurate.<br />
+    It <strong>doesn't</strong> include the massive amount of C/Python/Perl/C++/Java and other programming I did while a student
+    at UMBC from 2003 to 2013.
   </p>
 </section>
 
@@ -65,9 +67,13 @@ title: my\ CV
       $(this).remove(); // only have this once, no reason to toggle
     });
 
-    // I spent 20 minutes playing with matching primary technologies per job over the past several years and came up with this:
+    /* I spent 20 minutes playing with matching primary technologies per job over the past 
+     * several years and came up with these values.
+     * 
+     * It's not perfect and doesn't include the massive amount of time I did this stuff in school.
+     */
     var d = {'C' : 8.67, 'Ops' : 1.75, 'Analysis' : 2.58, 'x86 asm' : 5.67,
-             'arm asm' : 2.42, 'Python' : 8.67, 'Objective-C' : 1.08, 'C++' : 1.25,
+             'arm asm' : 2.42, 'Python' : 11.26, 'Objective-C' : 1.08, 'C++' : 1.25,
              'C#' : 0.83, 'JavaScript' : 1.5, 'NoSQL' : 2.58, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
     var unsorted = [];
 
@@ -99,7 +105,7 @@ title: my\ CV
       options: {
         title: {
           display: true,
-          text: 'Not very accurate professional development experience breakout, but was fun to try and make.'
+          text: 'Not very accurate professional-only development experience breakout, but was fun to try and make.'
         },
         legend: {
           display: false,
