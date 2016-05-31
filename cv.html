@@ -143,8 +143,18 @@ title: my\ CV
             if (!tooltip) {
               return;
             }
-            
+
             var tooltipEl = $("#chartjs-tooltip");
+
+            // Hide if no tooltip
+            if (!tooltip.opacity) {
+              tooltipEl.css({opacity: 0});
+              $('.chartjs-wrap canvas').each(function(index, el) {
+                $(el).css('cursor', 'default');
+              });
+              return;
+            }
+
             var parts = tooltip.text.split(":");
             var innerHtml = '<span>' + parts[0].trim() + '</span> : <span><strong>' + parts[1].trim() + '</strong> years</span>';
             tooltipEl.html(innerHtml);
