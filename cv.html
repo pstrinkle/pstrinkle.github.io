@@ -10,6 +10,11 @@ title: my\ CV
   <p>My professional experience started in 2002, however I've been having fun programming from a very young age and have considered it not only my hobby and carrer, but also my primary creative outlet (for better or worse)</p>
 
   <ul>
+    <li>UMBC - M.S. Computer Science 2013 - probabilistic modeling</li>
+    <li>UMBC - B.S. Computer Science 2006</li>
+  </ul>
+
+  <ul>
     <li>CTO - Activatr Inc &gt;&gt; Dec 2014 - now</li>
     <li>Bit-Level Engineer - Cyberpoint Int. &gt;&gt; Mar 2015 - now</li>
     <li>Sr Software Engineer - Voxility, SRL &gt;&gt; 7 mos</li>
@@ -18,5 +23,37 @@ title: my\ CV
     <li>Sr Software Engineer - Kimball Consulting &gt;&gt; 5 yrs, 8 mos</li>
     <li>Analyst/Software Engineer - DoD &gt;&gt; 5 yrs, 1 mo</li>
   </ul>
-
+  
+  <div id='funpie'>
+    
+  </div>
 </section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+
+<script>
+  var d = {'C' : 8.67, 'Ops' : 1.75, 'Analysis' : 2.58, 'x86 asm' : 5.67,
+           'arm asm' : 2.42, 'Python' : 8.67, 'Objective-C' : 1.08, 'C++' : 1.25,
+           'C#' : 0.83, 'JavaScript' : 1.5, 'NoSQL' : 2.58, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
+
+  var colors = ['37,56,82,', '238,115,114,', '42,169,224,'];
+  var data = {
+    labels: [],
+    datasets: [{ data: [],
+      backgroundColor: [],
+      hoverBackgroundColor: []
+    }]
+  };
+  var i = 0;
+  $.each(d, function(key, value) {
+    data.labels.push(key);
+    data.datasets[0].data.push(value);
+    data.datasets[0].backgroundColor.push('rgba(' + colors[i] + '0.5)');
+    data.datasets[0].hoverBackgroundColor.push('rgba(' + colors[i] + '1)');
+    i = (i + 1) % 3;
+  });
+  $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
+  var ctx = document.getElementById("funpie_pie").getContext("2d");
+  new Chart(ctx, {type: "pie", data: data});
+</script>
