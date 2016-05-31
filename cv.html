@@ -25,7 +25,6 @@ title: my\ CV
   </ul>
   
   <div id='funpie'>
-    <h6>Not quite accurate professional experience breakout, but was fun to try and make:</h6>
   </div>
 </section>
 
@@ -58,13 +57,14 @@ title: my\ CV
   new Chart(ctx, {
     type: "pie",
     data: data,
-    legend : { 
-      labels : {
-        generateLabels : function(chart) {}
-      }
-    },
     options: {
-      legendCallback : function(chart) {}
+      title: {
+        display: true,
+        text: 'Not very accurate professional experience breakout, but was fun to try and make.'
+      },
+      legend: {
+        display: false,
+      },
     }
   });
 </script>
