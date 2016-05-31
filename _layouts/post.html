@@ -2,12 +2,10 @@
 layout: default
 ---
 <header>
-  <h1>blog/ {{ page.title }}</h1>
+  <h1><a href="/blog">blog</a>/ {{ page.title }}</h1>
 </header>
 
 <p class="meta">{{ page.date | date_to_string }}</p>
-
-&lt;&lt;&nbsp;<a href="/blog">back</a>
 
 <div class="post">
   {{ content }}
