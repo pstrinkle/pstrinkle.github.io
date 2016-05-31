@@ -55,5 +55,13 @@ title: my\ CV
   });
   $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
   var ctx = document.getElementById("funpie_pie").getContext("2d");
-  new Chart(ctx, {type: "pie", data: data, options: {legend.labels.generateLabels : function(chart) {}}});
+  new Chart(ctx, {
+    type: "pie",
+    data: data,
+    options: {
+      legend : { 
+        labels.generateLabels : function(chart) {}
+      }
+    }
+  });
 </script>
