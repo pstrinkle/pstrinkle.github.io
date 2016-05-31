@@ -131,10 +131,24 @@ title: my\ CV
       options: {
         title: {
           display: true,
-          text: 'Not very accurate professional-only development experience breakout, but was fun to try and make.'
+          text: 'Not accurate professional-only development experience breakout',
+          fontColor: '#fff',
+          fontSize: 12,
         },
         legend: {
           display: false,
+        },
+        tooltips: {
+          custom: function(tooltip) {
+            if (!tooltip) {
+              return;
+            }
+            
+            var tooltipEl = $("#chartjs-tooltip");
+            var parts = tooltip.text.split(":");
+            var innerHtml = '<span>' + parts[0].trim() + '</span> : <span><strong>' + parts[1].trim() + '</strong> years</span>';
+            tooltipEl.html(innerHtml);
+          }
         },
       }
     });
