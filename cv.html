@@ -58,10 +58,11 @@ title: my\ CV
   new Chart(ctx, {
     type: "pie",
     data: data,
-    options: {
-      legend : { 
-        labels.generateLabels : function(chart) {}
+    legend : { 
+      labels : {
+        generateLabels : function(chart) {}
       }
-    }
+    },
+    options: {}
   });
 </script>
