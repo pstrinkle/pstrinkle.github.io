@@ -10,8 +10,8 @@ title: my\ CV
   <p>My professional experience started in 2002, however I've been having fun programming from a very young age and have considered it not only my hobby and carrer, but also my primary creative outlet (for better or worse)</p>
 
   <ul>
-    <li>UMBC - M.S. Computer Science 2013 - probabilistic modeling <a id='msmore' href=''>[more]</a></li>
-    <div id='mscourses' class="row" style="display:none;">
+    <li>UMBC - M.S. Computer Science 2013 - probabilistic modeling <a class='more' href='ms'>[more]</a></li>
+    <div id='ms' class="row" style="display:none;">
       <div class="col-md-6">
         <ul>
           <li>Information Retrieval</li>
@@ -32,8 +32,8 @@ title: my\ CV
       </div>
     </div>
     
-    <li>UMBC - B.S. Computer Science 2006 <a id='bsmore' href=''>[more]</a></li>
-    <div id='bscourses' class="row">
+    <li>UMBC - B.S. Computer Science 2006 <a class='more' href='bs'>[more]</a></li>
+    <div id='bs' class="row">
       <div class="col-md-6">
         <ul>
           <li>Computer Science I &amp; II</li>
@@ -85,10 +85,11 @@ title: my\ CV
 
 <script>
   $(function() {
-    $('#msmore').on('click', function(event) {
+    $('.more').on('click', function(event) {
       event.preventDefault(); // no href for you!
-      $('#mscourses').slideToggle({complete: function() {
-        $('#msmore').remove(); // only have this once, no reason to toggle
+      var t = this;
+      $('#' + $(t).attr('href')).slideToggle({complete: function() {
+        $(t).remove(); // only have this once, no reason to toggle
       }});
     });
 
