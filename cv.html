@@ -25,7 +25,12 @@ title: my\ CV
   </ul>
   
   <div id='funpie'>
+    
   </div>
+  <p class="small">
+    I thought it'd be fun to try and compute how many years I spent actively developing in each technology 
+    to breakout my career in a pie graph.  It was a fun thing to do, but isn't terribly accurate.
+  </p>
 </section>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -35,6 +40,12 @@ title: my\ CV
   var d = {'C' : 8.67, 'Ops' : 1.75, 'Analysis' : 2.58, 'x86 asm' : 5.67,
            'arm asm' : 2.42, 'Python' : 8.67, 'Objective-C' : 1.08, 'C++' : 1.25,
            'C#' : 0.83, 'JavaScript' : 1.5, 'NoSQL' : 2.58, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
+  var unsorted = [];
+
+  $.each(d, function(key, value) { unsorted.push([key, value]); });
+  unsorted.sort(function(a, b) {
+    return a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0
+  });
 
   var colors = ['255,153,153,', '154,229,154,', '102,163,255,',
                 '255,153,187,', '210,77,255,'];
@@ -49,7 +60,7 @@ title: my\ CV
   var i = 0;
   var m = colors.length;
 
-  $.each(d, function(key, value) {
+  $.each(unsorted, function(key, value) {
     data.labels.push(key);
     data.datasets[0].data.push(value);
     data.datasets[0].backgroundColor.push('rgba(' + colors[i] + '1)');
