@@ -1,3 +1,7 @@
+nav {
+    margin-top: 10px;
+}
+
 nav ul, footer ul {
     padding: 0px;
     list-style: none;
