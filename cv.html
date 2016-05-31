@@ -154,6 +154,11 @@ title: my\ CV
               });
               return;
             }
+            
+            /* weird, but ya know; it happened */
+            if (tooltip.text == undefined) {
+              return;
+            }
 
             var parts = tooltip.text.split(":");
             var innerHtml = '<span>' + parts[0].trim() + '</span> : <span><strong>' + parts[1].trim() + '</strong> years</span>';
