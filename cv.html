@@ -73,9 +73,9 @@ title: my\ CV
   var i = 0;
   var m = colors.length;
 
-  $.each(unsorted, function(key, value) {
-    data.labels.push(key);
-    data.datasets[0].data.push(value);
+  $.each(unsorted, function(index, element) {
+    data.labels.push(element[0]);
+    data.datasets[0].data.push(element[1]);
     data.datasets[0].backgroundColor.push('rgba(' + colors[i] + '1)');
     data.datasets[0].hoverBackgroundColor.push('rgba(' + colors[i] + '0.5)');
     i = (i + 1) % m;
