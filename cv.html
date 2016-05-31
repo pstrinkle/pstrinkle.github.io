@@ -25,7 +25,7 @@ title: my\ CV
   </ul>
   
   <div id='funpie'>
-    
+    <h6>Not quite accurate professional experience breakout, but was fun to try and make:</h6>
   </div>
 </section>
 
@@ -55,5 +55,5 @@ title: my\ CV
   });
   $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
   var ctx = document.getElementById("funpie_pie").getContext("2d");
-  new Chart(ctx, {type: "pie", data: data});
+  new Chart(ctx, {type: "pie", data: data, options: {legend.labels.generateLabels : function(chart) {}}});
 </script>
