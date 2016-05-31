@@ -52,8 +52,8 @@ title: my\ CV
   $.each(d, function(key, value) {
     data.labels.push(key);
     data.datasets[0].data.push(value);
-    data.datasets[0].backgroundColor.push('rgba(' + colors[i] + '0.5)');
-    data.datasets[0].hoverBackgroundColor.push('rgba(' + colors[i] + '1)');
+    data.datasets[0].backgroundColor.push('rgba(' + colors[i] + '1)');
+    data.datasets[0].hoverBackgroundColor.push('rgba(' + colors[i] + '0.5)');
     i = (i + 1) % m;
   });
   $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
