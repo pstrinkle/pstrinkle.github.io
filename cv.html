@@ -206,6 +206,11 @@ title: my\ CV
               fontStyle: tooltip._fontStyle,
               padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
             });
+
+            var w = tooltipEl.width();
+            console.log('w: ' + w);
+
+            tooltipEl.css('width', w + 'px');
           }
         },
       }
