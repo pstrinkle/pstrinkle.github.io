@@ -171,10 +171,16 @@ title: my\ CV
       // Find Y Location on page
       var top = 0;
       if (tooltip.yAlign) {
+        var ch = 0;
+        // because for me it was always undefined...
+        if (tooltip.caretHeight) {
+          ch = tooltip.caretHeight;
+        }
+        
         if (tooltip.yAlign == 'above') {
-          top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
+          top = tooltip.y - ch - tooltip.caretPadding;
         } else {
-          top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
+          top = tooltip.y + ch + tooltip.caretPadding;
         }
       }
 
