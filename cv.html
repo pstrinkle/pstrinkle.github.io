@@ -183,6 +183,7 @@ title: my\ CV
                 (tooltip.footer || []).join('\n'),
                 (tooltip.afterFooter || []).join('\n')
               ];
+              console.log(JSON.stringify(innerHtml, null, 2));
               tooltipEl.html(innerHtml.join('\n'));
             }
             // Find Y Location on page
