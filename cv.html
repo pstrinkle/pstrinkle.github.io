@@ -173,8 +173,8 @@ title: my\ CV
             // Set Text
             if (tooltip.body) {
               var innerHtml = [ (tooltip.body || []).join('\n') ];
-              console.log('body: ');
-              console.log(JSON.stringify(tooltip.body, null, 2));
+              console.log('body: ' + tooltip.body.join('\n'));
+              //console.log(JSON.stringify(tooltip.body, null, 2));
 
               var pieces = innerHtml[0].split(':');
               tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
