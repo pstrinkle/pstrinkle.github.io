@@ -173,10 +173,14 @@ title: my\ CV
               var innerHtml = [ (tooltip.body || []).join('\n') ];
               var body_s = tooltip.body.join('\n');
               console.log('body: ' + body_s);
-              var pieces = body_s.split(':');
+              var pieces = [];
+              $.each(body_s.split(':'), function(index, element) {
+                pieces.push(element.trim());
+              });
               console.log('pieces: ' + JSON.stringify(pieces));
               tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
               //tooltipEl.html(innerHtml.join('\n'));
+              console.log('tooltipEl.html: ' + tooltipEl.html());
             }
             // Find Y Location on page
             var top = 0;
