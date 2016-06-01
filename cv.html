@@ -173,18 +173,12 @@ title: my\ CV
             // Set Text
             if (tooltip.body) {
               var innerHtml = [
-                (tooltip.beforeTitle || []).join('\n'),
-                (tooltip.title || []).join('\n'),
-                (tooltip.afterTitle || []).join('\n'),
-                (tooltip.beforeBody || []).join('\n'),
                 (tooltip.body || []).join('\n'),
-                (tooltip.afterBody || []).join('\n'),
-                (tooltip.beforeFooter || []).join('\n'),
-                (tooltip.footer || []).join('\n'),
-                (tooltip.afterFooter || []).join('\n')
               ];
+              var pieces = tooltip.body.split(':');
+              tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
               console.log(JSON.stringify(innerHtml, null, 2));
-              tooltipEl.html(innerHtml.join('\n'));
+              //tooltipEl.html(innerHtml.join('\n'));
             }
             // Find Y Location on page
             var top = 0;
