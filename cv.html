@@ -100,7 +100,7 @@ title: my\ CV
      */
     var d = {'C' : 8.67, 'Ops' : 1.75, 'Analysis' : 2.58, 'x86 asm' : 5.67,
              'arm asm' : 2.42, 'Python' : 11.26, 'Objective-C' : 1.08, 'C++' : 1.25,
-             'C#' : 0.83, 'JavaScript' : 1.5, 'NoSQL' : 2.58, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
+             'C#' : 0.83, 'JavaScript' : 4.0, 'NoSQL' : 2.59, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
     var unsorted = [];
 
     // I want to sort it largest to smallest.
@@ -146,6 +146,11 @@ title: my\ CV
 
             var tooltipEl = $("#chartjs-tooltip");
 
+            if (!tooltipEl[0]) {
+              $('body').append('<div id="chartjs-tooltip"></div>');
+              tooltipEl = $('#chartjs-tooltip');
+            }
+
             // Hide if no tooltip
             if (!tooltip.opacity) {
               tooltipEl.css({opacity: 0});
@@ -154,15 +159,53 @@ title: my\ CV
               });
               return;
             }
-            
-            /* weird, but ya know; it happened */
-            if (tooltip.text == undefined) {
-              return;
+
+            $(this._chart.canvas).css('cursor', 'pointer');
+
+            // Set caret Position
+            tooltipEl.removeClass('above below no-transform');
+            if (tooltip.yAlign) {
+              tooltipEl.addClass(tooltip.yAlign);
+            } else {
+              tooltipEl.addClass('no-transform');
             }
 
-            var parts = tooltip.text.split(":");
-            var innerHtml = '<span>' + parts[0].trim() + '</span> : <span><strong>' + parts[1].trim() + '</strong> years</span>';
-            tooltipEl.html(innerHtml);
+            // Set Text
+            if (tooltip.body) {
+              var innerHtml = [
+                (tooltip.beforeTitle || []).join('\n'),
+                (tooltip.title || []).join('\n'),
+                (tooltip.afterTitle || []).join('\n'),
+                (tooltip.beforeBody || []).join('\n'),
+                (tooltip.body || []).join('\n'),
+                (tooltip.afterBody || []).join('\n'),
+                (tooltip.beforeFooter || []).join('\n'),
+                (tooltip.footer || []).join('\n'),
+                (tooltip.afterFooter || []).join('\n')
+              ];
+              tooltipEl.html(innerHtml.join('\n'));
+            }
+            // Find Y Location on page
+            var top = 0;
+            if (tooltip.yAlign) {
+              if (tooltip.yAlign == 'above') {
+                top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
+              } else {
+                top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
+              }
+            }
+            var position = $(this._chart.canvas)[0].getBoundingClientRect();
+            // Display, position, and set styles for font
+            tooltipEl.css({
+              opacity: 1,
+              width: tooltip.width ? (tooltip.width + 'px') : 'auto',
+              left: position.left + tooltip.x + 'px',
+              top: position.top + top + 'px',
+              fontFamily: tooltip._fontFamily,
+              fontSize: tooltip.fontSize,
+              fontStyle: tooltip._fontStyle,
+              padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
+            });
           }
         },
       }
