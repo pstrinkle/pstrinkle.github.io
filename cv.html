@@ -187,7 +187,7 @@ title: my\ CV
       }
 
       var position = $(this._chart.canvas)[0].getBoundingClientRect();
-      var position = $('#funpie_pie').position();
+      var position = $('#funpie_pie').offset(); /* location within document */
 
       console.log('tooltip.y: ' + tooltip.y);
       console.log('tooltip.caretHeight: ' + tooltip.caretHeight);
