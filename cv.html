@@ -98,7 +98,8 @@ title: my\ CV
      */
     var d = {'C' : 8.67, 'Ops' : 1.75, 'Analysis' : 2.58, 'x86 asm' : 5.67,
              'arm asm' : 2.42, 'Python' : 11.26, 'Objective-C' : 1.08, 'C++' : 1.25,
-             'C#' : 0.83, 'JavaScript' : 4.0, 'NoSQL' : 2.59, 'JTAG' : 5.67, 'HTML+CSS' : 2.49};
+             'C#' : 0.83, 'JavaScript' : 4.0, 'NoSQL' : 2.59, 'JTAG' : 5.67,
+             'HTML+CSS' : 2.49};
     var unsorted = [];
 
     // I want to sort it largest to smallest.
@@ -121,6 +122,7 @@ title: my\ CV
       data.datasets[0].hoverBackgroundColor.push('rgba(' + colors[i] + '0.5)');
       i = (i + 1) % m;
     });
+
     $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
     var ctx = document.getElementById("funpie_pie").getContext("2d");
     new Chart(ctx, {
@@ -133,14 +135,10 @@ title: my\ CV
           fontColor: '#fff',
           fontSize: 12,
         },
-        legend: {
-          display: false,
-        },
+        legend: { display: false, },
         tooltips: {
           custom: function(tooltip) {
-            if (!tooltip) {
-              return;
-            }
+            if (!tooltip) { return; }
 
             var tooltipEl = $("#chartjs-tooltip");
 
@@ -191,6 +189,9 @@ title: my\ CV
                 top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
               }
             }
+            
+            console.log('tooltip.width: ' + tooltip.width);
+
             var position = $(this._chart.canvas)[0].getBoundingClientRect();
             // Display, position, and set styles for font
             tooltipEl.css({
