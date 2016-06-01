@@ -73,7 +73,7 @@ title: my\ CV
 </section>
 
 <section>
-  <div id="canvas-holder">
+  <div id="canvas-holder" style="position:relative;">
     <canvas id="funpie_pie" />
   </div>
   <div id="chartjs-tooltip"></div>
@@ -187,6 +187,13 @@ title: my\ CV
       }
 
       var position = $(this._chart.canvas)[0].getBoundingClientRect();
+
+      console.log('tooltip.y: ' + tooltip.y);
+      console.log('tooltip.caretHeight: ' + tooltip.caretHeight);
+      console.log('tooltip.caretPadding: ' + tooltip.caretPadding);
+      console.log('top: ' + top);
+      console.log('position: ' + JSON.stringify(position, null, 2));
+
       // Display, position, and set styles for font
       tooltipEl.css({
         opacity: 1,
