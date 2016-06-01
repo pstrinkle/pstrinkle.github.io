@@ -274,3 +274,9 @@ a:visited {
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
 }
+
+.chartjs-tooltip-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
