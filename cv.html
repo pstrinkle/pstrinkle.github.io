@@ -130,6 +130,7 @@ title: my\ CV
       i = (i + 1) % m;
     });
 
+    // https://jsfiddle.net/patrickactivatr/ytLtmLgs/1/
     var custom = function(tooltip) {
       if (!tooltip) { return; }
 
@@ -161,15 +162,15 @@ title: my\ CV
 
       // Set Text
       if (tooltip.body) {
-        var innerHtml = [ (tooltip.body || []).join('\n') ];
         var body_s = tooltip.body.join('\n');
         var pieces = [];
         $.each(body_s.split(':'), function(index, element) {
           pieces.push(element.trim());
         });
 
-          tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
+        tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
       }
+
       // Find Y Location on page
       var top = 0;
       if (tooltip.yAlign) {
@@ -186,14 +187,7 @@ title: my\ CV
         }
       }
 
-      var position = $(this._chart.canvas)[0].getBoundingClientRect();
       var position = $('#funpie_pie').offset(); /* location within document */
-
-      console.log('tooltip.y: ' + tooltip.y);
-      console.log('tooltip.caretHeight: ' + tooltip.caretHeight);
-      console.log('tooltip.caretPadding: ' + tooltip.caretPadding);
-      console.log('top: ' + top);
-      console.log('position: ' + JSON.stringify(position, null, 2));
 
       // Display, position, and set styles for font
       tooltipEl.css({
