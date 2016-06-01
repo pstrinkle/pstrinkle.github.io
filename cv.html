@@ -69,9 +69,7 @@ title: my\ CV
     <li>Analyst/Software Engineer - DoD &gt;&gt; 5 yrs, 1 mo</li>
   </ul>
   
-  <div id='funpie'>
-    
-  </div>
+  <div id='funpie'></div>
   <p class="small">
     I thought it'd be fun to try and compute how many years I spent actively developing in each technology 
     to breakout my career in a pie graph.  It was a fun thing to do, but isn't terribly accurate.<br />
@@ -173,12 +171,11 @@ title: my\ CV
             // Set Text
             if (tooltip.body) {
               var innerHtml = [ (tooltip.body || []).join('\n') ];
-              console.log('body: ' + tooltip.body.join('\n'));
-              //console.log(JSON.stringify(tooltip.body, null, 2));
-
-              var pieces = innerHtml[0].split(':');
+              var body_s = tooltip.body.join('\n');
+              console.log('body: ' + body_s);
+              var pieces = body_s.split(':');
+              console.log('pieces: ' + JSON.stringify(pieces));
               tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
-
               //tooltipEl.html(innerHtml.join('\n'));
             }
             // Find Y Location on page
