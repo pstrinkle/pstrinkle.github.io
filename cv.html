@@ -172,12 +172,11 @@ title: my\ CV
             if (tooltip.body) {
               var innerHtml = [ (tooltip.body || []).join('\n') ];
               var body_s = tooltip.body.join('\n');
-              console.log('body: ' + body_s);
               var pieces = [];
               $.each(body_s.split(':'), function(index, element) {
                 pieces.push(element.trim());
               });
-              console.log('pieces: ' + JSON.stringify(pieces));
+
               tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
               //tooltipEl.html(innerHtml.join('\n'));
               console.log('tooltipEl.html: ' + tooltipEl.html());
@@ -191,8 +190,6 @@ title: my\ CV
                 top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
               }
             }
-            
-            console.log('tooltip.width: ' + tooltip.width);
 
             var position = $(this._chart.canvas)[0].getBoundingClientRect();
             // Display, position, and set styles for font
@@ -207,7 +204,7 @@ title: my\ CV
               padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
             });
 
-            var w = tooltipEl.width();
+            var w = tooltipEl.outerWidth();
             console.log('w: ' + w);
 
             tooltipEl.css('width', '');
