@@ -71,7 +71,10 @@ title: my\ CV
     <li>Analyst/Software Engineer - DoD &gt;&gt; 5 yrs, 1 mo</li>
   </ul>
   
-  <div id='funpie'></div>
+  <div id="canvas-holder">
+    <canvas id="funpie_pie" />
+  </div>
+  <div id="chartjs-tooltip"></div>
   <p class="small">
     I thought it'd be fun to try and compute how many years I spent actively developing in each technology 
     to breakout my career in a pie graph.  It was a fun thing to do, but isn't terribly accurate.<br />
@@ -125,12 +128,78 @@ title: my\ CV
       i = (i + 1) % m;
     });
 
-    $('#funpie').append($('<canvas>', {id: "funpie_pie"}));
+    var custom = function(tooltip) {
+      if (!tooltip) { return; }
+
+      var tooltipEl = $("#chartjs-tooltip");
+
+      if (!tooltipEl[0]) {
+        $('body').append('<div id="chartjs-tooltip"></div>');
+        tooltipEl = $('#chartjs-tooltip');
+      }
+
+      // Hide if no tooltip
+      if (!tooltip.opacity) {
+        tooltipEl.css({opacity: 0});
+        $('.chartjs-wrap canvas').each(function(index, el) {
+          $(el).css('cursor', 'default');
+        });
+        return;
+      }
+
+      $(this._chart.canvas).css('cursor', 'pointer');
+
+      // Set caret Position
+      tooltipEl.removeClass('above below no-transform');
+      if (tooltip.yAlign) {
+        tooltipEl.addClass(tooltip.yAlign);
+      } else {
+        tooltipEl.addClass('no-transform');
+      }
+
+      // Set Text
+      if (tooltip.body) {
+        var innerHtml = [ (tooltip.body || []).join('\n') ];
+        var body_s = tooltip.body.join('\n');
+        var pieces = [];
+        $.each(body_s.split(':'), function(index, element) {
+          pieces.push(element.trim());
+        });
+
+          tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
+      }
+      // Find Y Location on page
+      var top = 0;
+      if (tooltip.yAlign) {
+        if (tooltip.yAlign == 'above') {
+          top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
+        } else {
+          top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
+        }
+      }
+
+      var position = $(this._chart.canvas)[0].getBoundingClientRect();
+      // Display, position, and set styles for font
+      tooltipEl.css({
+        opacity: 1,
+        width: 'auto',
+        left: position.left + tooltip.x + 'px',
+        top: position.top + top + 'px',
+        fontFamily: tooltip._fontFamily,
+        fontSize: tooltip.fontSize,
+        fontStyle: tooltip._fontStyle,
+        padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
+      });
+    };
+
+    Chart.defaults.global.tooltips.custom = custom;
+
     var ctx = document.getElementById("funpie_pie").getContext("2d");
     new Chart(ctx, {
-      type: "pie",
+      type: "doughnut",
       data: data,
       options: {
+        responsive: true,
         title: {
           display: true,
           text: 'Not accurate professional-only development experience breakout',
@@ -138,80 +207,8 @@ title: my\ CV
           fontSize: 12,
         },
         legend: { display: false, },
-        tooltips: {
-          custom: function(tooltip) {
-            if (!tooltip) { return; }
-
-            var tooltipEl = $("#chartjs-tooltip");
-
-            if (!tooltipEl[0]) {
-              $('body').append('<div id="chartjs-tooltip"></div>');
-              tooltipEl = $('#chartjs-tooltip');
-            }
-
-            // Hide if no tooltip
-            if (!tooltip.opacity) {
-              tooltipEl.css({opacity: 0});
-              $('.chartjs-wrap canvas').each(function(index, el) {
-                $(el).css('cursor', 'default');
-              });
-              return;
-            }
-
-            $(this._chart.canvas).css('cursor', 'pointer');
-
-            // Set caret Position
-            tooltipEl.removeClass('above below no-transform');
-            if (tooltip.yAlign) {
-              tooltipEl.addClass(tooltip.yAlign);
-            } else {
-              tooltipEl.addClass('no-transform');
-            }
-
-            // Set Text
-            if (tooltip.body) {
-              var innerHtml = [ (tooltip.body || []).join('\n') ];
-              var body_s = tooltip.body.join('\n');
-              var pieces = [];
-              $.each(body_s.split(':'), function(index, element) {
-                pieces.push(element.trim());
-              });
-
-              tooltipEl.html(pieces[0] + ': ' + pieces[1] + ' years');
-              //tooltipEl.html(innerHtml.join('\n'));
-              console.log('tooltipEl.html: ' + tooltipEl.html());
-            }
-            // Find Y Location on page
-            var top = 0;
-            if (tooltip.yAlign) {
-              if (tooltip.yAlign == 'above') {
-                top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
-              } else {
-                top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
-              }
-            }
-
-            var position = $(this._chart.canvas)[0].getBoundingClientRect();
-            // Display, position, and set styles for font
-            tooltipEl.css({
-              opacity: 1,
-              width: 'auto', // tooltip.width ? (tooltip.width + 'px') : 'auto',
-              left: position.left + tooltip.x + 'px',
-              top: position.top + top + 'px',
-              fontFamily: tooltip._fontFamily,
-              fontSize: tooltip.fontSize,
-              fontStyle: tooltip._fontStyle,
-              padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
-            });
-
-            var w = tooltipEl.outerWidth();
-            console.log('w: ' + w);
-
-            tooltipEl.css('width', '');
-            tooltipEl.css('min-width', w + 'px');
-          }
-        },
-      }
+        tooltips: { enabled: false, },
+      },
     });
   });
 </script>
