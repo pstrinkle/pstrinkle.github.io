@@ -4,17 +4,31 @@ title: about
 ---
 <h1>{{ page.title }}</h1>
 
-<div id="circle"></div>
+<div class="row">
+  <div class="col-md-6">
+  <div id="c_circle"><span>C</span></div>
+  </div>
+  <div class="col-md-6">
+    <div id="p_circle"><span>Python</span></div>
+  </div>
+</div>
 
 <script src="{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
 
 <script>
   $(function() {
-    $('#circle').circleProgress({
+    $('#c_circle').circleProgress({
         value: 0.75,
         size: 80,
         fill: {
           gradient: ["red", "orange"]
+        }
+    });
+    $('#p_circle').circleProgress({
+        value: 0.75,
+        size: 80,
+        fill: {
+          gradient: ["white", "blue"]
         }
     });
   });
