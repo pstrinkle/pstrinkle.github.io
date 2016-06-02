@@ -1,6 +1,21 @@
 ---
 layout: default
-title: About Patrick
+title: about
 ---
 <h1>{{ page.title }}</h1>
-<p>I really don't know yet what I'm going to do with this.</p>
+
+<div id="circle"></div>
+
+<script src="//{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
+
+<script>
+  $(function() {
+    $('#circle').circleProgress({
+        value: 0.75,
+        size: 80,
+        fill: {
+          gradient: ["red", "orange"]
+        }
+    });
+  });
+</script>
