@@ -25,7 +25,14 @@ title: about
           gradient: ["red", "orange"]
         }
     }).on('circle-animation-end', function(event) {
-      $('<strong>', {text: "C"}).insertBefore($(this).find('canvas'));
+      var $canvas = $(this).find('canvas'); /* XXX: I should make this an option to circle-progress. */
+      $canvas.attr('id', 'c_canvas');
+      var canvas = document.getElementById("c_canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.font = "normal normal bold 16px Monaco";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText("C", canvas.width/2, canvas.height/2); 
     });
     $('#p_circle').circleProgress({
         value: 0.75,
