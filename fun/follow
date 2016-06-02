@@ -1,0 +1,8 @@
+---
+layout: default
+title: follow
+---
+
+<p>I thought it might be fun to have something basically always facing where the mouse is, such that it basically follows the mouse 
+from a fixed position.  I'm thinking about doing it in with the circle-javascript as the underlying mechanic for handling the canvas
+updates.</p>
