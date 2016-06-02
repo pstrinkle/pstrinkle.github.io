@@ -24,7 +24,7 @@ title: about
           gradient: ["red", "orange"]
         }
     }).on('circle-animation-start', function(event) {
-      $(this).html('<strong>C</strong>');
+      $(this).append('<strong>C</strong>');
     });
     $('#p_circle').circleProgress({
         value: 0.75,
@@ -33,7 +33,7 @@ title: about
           gradient: ["white", "blue"]
         }
     }).on('circle-animation-start', function(event) {
-      $(this).html('<strong>Python</strong>');
+      $(this).append('<strong>Python</strong>');
     });
   });
 </script>
