@@ -25,7 +25,7 @@ title: about
           gradient: ["red", "orange"]
         }
     }).on('circle-animation-end', function(event) {
-      $(this).find('canvas').append('<strong>C</strong>');
+      $('<strong>', {text: "C"}).insertBefore($(this).find('canvas'));
     });
     $('#p_circle').circleProgress({
         value: 0.75,
@@ -34,7 +34,7 @@ title: about
           gradient: ["white", "blue"]
         }
     }).on('circle-animation-end', function(event) {
-      $(this).find('strong').html('Python');
+      $('<strong>', {text: "Python"}).insertBefore($(this).find('canvas'));
     });
   });
 </script>
