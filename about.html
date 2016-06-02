@@ -35,10 +35,12 @@ title: about
 
       ctx.font = "normal normal bold 16px Monaco";
       ctx.textAlign = "center";
-      /* 16/2 == 8, but to make it start at the halfway point of the
-       * characters' height would be 7... (0...15)
-       */
-      ctx.fillText(what, canvas.width/2, (canvas.height/2)+7);
+      ctx.textBaseline = "middle";
+
+      var y = (canvas.height/2)+1;
+      var x = (canvas.width/2)+1;
+
+      ctx.fillText(what, x, y);
     }
     
     // circle-animation-start doesn't seem to fire for me.
