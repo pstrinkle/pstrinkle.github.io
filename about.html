@@ -11,12 +11,8 @@ title: about
   <div class="col-md-3">
     <div id="p_circle"></div>
   </div>
-  <div class="col-md-3">
-    <div id="f_circle"></div>
-  </div>
-  <div class="col-md-3">
-    <div id="j_circle"></div>
-  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
 </div>
 
 <script src="{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
@@ -41,7 +37,7 @@ title: about
     $('#c_circle').circleProgress({
       value: 0.75,
       size: 80,
-      fill: { gradient: ["red", "orange"] }
+      fill: { gradient: ["white", "red"] }
     }).on('circle-animation-end', function(event) {
       /* XXX: I should make this an option to circle-progress. */
       addText(this, "C");
