@@ -6,10 +6,10 @@ title: about
 
 <div class="row">
   <div class="col-md-6">
-  <div id="c_circle"><strong>C</strong></div>
+  <div id="c_circle"><strong></strong></div>
   </div>
   <div class="col-md-6">
-    <div id="p_circle"><strong>Python</strong></div>
+    <div id="p_circle"><strong></strong></div>
   </div>
 </div>
 
@@ -25,7 +25,7 @@ title: about
           gradient: ["red", "orange"]
         }
     }).on('circle-animation-end', function(event) {
-      $(this).append('<strong>C</strong>');
+      $(this).find('strong').html('C');
     });
     $('#p_circle').circleProgress({
         value: 0.75,
@@ -34,7 +34,7 @@ title: about
           gradient: ["white", "blue"]
         }
     }).on('circle-animation-end', function(event) {
-      $(this).append('<strong>Python</strong>');
+      $(this).find('strong').html('Python');
     });
   });
 </script>
