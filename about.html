@@ -26,13 +26,14 @@ title: about
 
       var canvas = document.getElementById(nid);
       var ctx = canvas.getContext("2d");
-      var gradient=ctx.createLinearGradient(0,0,ctx.width,0);
+      var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
+
+      // Fill with gradient
       gradient.addColorStop("0.0",start);
       gradient.addColorStop("1.0",stop);
-      // Fill with gradient
       ctx.fillStyle = gradient;
+
       ctx.font = "normal normal bold 16px Monaco";
-      //ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText(what, canvas.width/2, (canvas.height/2)); 
     }
