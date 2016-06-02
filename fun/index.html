@@ -8,7 +8,7 @@ title: fun
 
 <ul class="posts">
   {% for fun in site.pages %}
-    {% if fun.url contains 'fun' %}
+    {% if fun.url contains 'fun' and fun.url != page.url %}
       <li><a href="{{ fun.url }}" title="{{ fun.title }}">{{ fun.title }}</a></li>
     {% endif %}
   {% endfor %}
