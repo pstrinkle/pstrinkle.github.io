@@ -29,8 +29,8 @@ title: about
       var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
 
       // Fill with gradient
-      gradient.addColorStop("0.0",start);
-      gradient.addColorStop("1.0",stop);
+      gradient.addColorStop("0.0",stop); // flipped to make its gradient opposite the circle.
+      gradient.addColorStop("1.0",start);
       ctx.fillStyle = gradient;
 
       ctx.font = "normal normal bold 16px Monaco";
@@ -41,7 +41,7 @@ title: about
     // circle-animation-start doesn't seem to fire for me.
     $('#c_circle').circleProgress({
       value: 0.75,
-      size: 80,
+      size: 100,
       fill: { gradient: ["white", "red"] }
     }).on('circle-animation-end', function(event) {
       /* XXX: I should make this an option to circle-progress. */
@@ -49,7 +49,7 @@ title: about
     });
     $('#p_circle').circleProgress({
       value: 0.75,
-      size: 80,
+      size: 100,
       fill: { gradient: ["white", "blue"] }
     }).on('circle-animation-end', function(event) {
       addText(this, "Python", "white", "blue");
