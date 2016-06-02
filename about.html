@@ -27,8 +27,10 @@ title: about
       var $canvas = $(where).find('canvas');
       var nid = $(where).attr('id') + '_canvas'
       $canvas.attr('id', nid);
+
       var canvas = document.getElementById(nid);
       var ctx = canvas.getContext("2d");
+
       ctx.font = "normal normal bold 16px Monaco";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
@@ -42,7 +44,6 @@ title: about
       fill: { gradient: ["red", "orange"] }
     }).on('circle-animation-end', function(event) {
       /* XXX: I should make this an option to circle-progress. */
-      
       addText(this, "C");
     });
     $('#p_circle').circleProgress({
@@ -50,10 +51,7 @@ title: about
       size: 80,
       fill: { gradient: ["white", "blue"] }
     }).on('circle-animation-end', function(event) {
-      var $canvas = $(this).find('canvas');
-      var nid = $(this).attr('id') + '_canvas'
-      $canvas.attr('id', nid);
-      addText(nid, "Python");
+      addText(this, "Python");
     });
   });
 </script>
