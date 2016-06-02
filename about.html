@@ -5,11 +5,17 @@ title: about
 <h1>{{ page.title }}</h1>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
     <div id="c_circle"></div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
     <div id="p_circle"></div>
+  </div>
+  <div class="col-md-3">
+    <div id="f_circle"></div>
+  </div>
+  <div class="col-md-3">
+    <div id="j_circle"></div>
   </div>
 </div>
 
@@ -17,39 +23,37 @@ title: about
 
 <script>
   $(function() {
+    function addText(where, what) {
+      var $canvas = $(where).find('canvas');
+      var nid = $(where).attr('id') + '_canvas'
+      $canvas.attr('id', nid);
+      var canvas = document.getElementById(nid);
+      var ctx = canvas.getContext("2d");
+      ctx.font = "normal normal bold 16px Monaco";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText(what, canvas.width/2, (canvas.height/2)); 
+    }
+    
     // circle-animation-start doesn't seem to fire for me.
     $('#c_circle').circleProgress({
-        value: 0.75,
-        size: 80,
-        fill: {
-          gradient: ["red", "orange"]
-        }
+      value: 0.75,
+      size: 80,
+      fill: { gradient: ["red", "orange"] }
     }).on('circle-animation-end', function(event) {
       /* XXX: I should make this an option to circle-progress. */
-      var $canvas = $(this).find('canvas');
-      $canvas.attr('id', 'c_canvas');
-      var canvas = document.getElementById("c_canvas");
-      var ctx = canvas.getContext("2d");
-      ctx.font = "normal normal bold 16px Monaco";
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.fillText("C", canvas.width/2, (canvas.height/2)); 
+      
+      addText(this, "C");
     });
     $('#p_circle').circleProgress({
-        value: 0.75,
-        size: 80,
-        fill: {
-          gradient: ["white", "blue"]
-        }
+      value: 0.75,
+      size: 80,
+      fill: { gradient: ["white", "blue"] }
     }).on('circle-animation-end', function(event) {
       var $canvas = $(this).find('canvas');
-      $canvas.attr('id', 'p_canvas');
-      var canvas = document.getElementById("p_canvas");
-      var ctx = canvas.getContext("2d");
-      ctx.font = "normal normal bold 16px Monaco";
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.fillText("Python", canvas.width/2, (canvas.height/2)); 
+      var nid = $(this).attr('id') + '_canvas'
+      $canvas.attr('id', nid);
+      addText(nid, "Python");
     });
   });
 </script>
