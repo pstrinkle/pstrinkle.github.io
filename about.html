@@ -24,6 +24,8 @@ title: about
           gradient: ["red", "orange"]
         }
     }).on('circle-animation-start', function(event) {
+      console.log('fired!');
+      console.log('this: ' + this);
       $(this).append('<strong>C</strong>');
     });
     $('#p_circle').circleProgress({
