@@ -19,16 +19,20 @@ title: about
 
 <script>
   $(function() {
-    function addText(where, what) {
+    function addText(where, what, start, stop) {
       var $canvas = $(where).find('canvas');
       var nid = $(where).attr('id') + '_canvas'
       $canvas.attr('id', nid);
 
       var canvas = document.getElementById(nid);
       var ctx = canvas.getContext("2d");
-
+      var gradient=ctx.createLinearGradient(0,0,ctx.width,0);
+      gradient.addColorStop("0.0",start);
+      gradient.addColorStop("1.0",stop);
+      // Fill with gradient
+      ctx.fillStyle = gradient;
       ctx.font = "normal normal bold 16px Monaco";
-      ctx.fillStyle = "white";
+      //ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText(what, canvas.width/2, (canvas.height/2)); 
     }
@@ -40,14 +44,14 @@ title: about
       fill: { gradient: ["white", "red"] }
     }).on('circle-animation-end', function(event) {
       /* XXX: I should make this an option to circle-progress. */
-      addText(this, "C");
+      addText(this, "C", "white", "red");
     });
     $('#p_circle').circleProgress({
       value: 0.75,
       size: 80,
       fill: { gradient: ["white", "blue"] }
     }).on('circle-animation-end', function(event) {
-      addText(this, "Python");
+      addText(this, "Python", "white", "blue");
     });
   });
 </script>
