@@ -17,20 +17,15 @@ title: about
 
 <script>
   $(function() {
+    // circle-animation-start doesn't seem to fire for me.
     $('#c_circle').circleProgress({
         value: 0.75,
         size: 80,
         fill: {
           gradient: ["red", "orange"]
         }
-    }).on('circle-animation-start', function(event) {
-      console.log('fired!');
-      console.log('this: ' + this);
-      $(this).append('<strong>C</strong>');
-    }).on('circle-animation-progress', function() {
-      console.log('progressing');
     }).on('circle-animation-end', function(event) {
-      console.log('ended!');
+      $(this).append('<strong>C</strong>');
     });
     $('#p_circle').circleProgress({
         value: 0.75,
@@ -38,7 +33,7 @@ title: about
         fill: {
           gradient: ["white", "blue"]
         }
-    }).on('circle-animation-start', function(event) {
+    }).on('circle-animation-end', function(event) {
       $(this).append('<strong>Python</strong>');
     });
   });
