@@ -27,6 +27,10 @@ title: about
       console.log('fired!');
       console.log('this: ' + this);
       $(this).append('<strong>C</strong>');
+    }).on('circle-animation-progress', function() {
+      console.log('progressing');
+    }).on('circle-animation-end', function(event) {
+      console.log('ended!');
     });
     $('#p_circle').circleProgress({
         value: 0.75,
