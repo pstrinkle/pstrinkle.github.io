@@ -34,18 +34,24 @@ updates.</p>
       return Math.sqrt(a);
     }
 
-    var $gb = $('#c_circle');
-    var position = $gb.offset();
-    var realWidth = $gb.outerWidth();
-    var realHeight = $gb.outerHeight();
-    var middleX = position.left + (realWidth/2);
-    var middleY = position.top + (realHeight/2);
+    var middleX, middleY;
+    var done = 0;
 
     $('#c_circle').circleProgress({
       value: 0.75,
       size: 100,
       fill: { gradient: ["white", "blue"] },
       animation : { duration: 10 },
+    }).on('circle-animation-end', function(event) {
+      if (0 == done) {
+        var $gb = $('#c_circle'); /* this */
+        var position = $gb.offset();
+        var realWidth = $gb.outerWidth();
+        var realHeight = $gb.outerHeight();
+        middleX = position.left + (realWidth/2);
+        middleY = position.top + (realHeight/2);
+        done = 1;
+      } /* I hope this doesn't fire every time. */
     });
 
     $(document).mousemove(function(event) {
