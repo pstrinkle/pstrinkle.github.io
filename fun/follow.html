@@ -60,17 +60,17 @@ updates.</p>
       if (event.pageY > middleY) {
         /* we are below it. */
         newY = event.pageY - middleY;
-        var diff = newY / event.pageY;
-        newX = diff * event.pageX;
       } else if (event.pageY < middleY) {
         /* we are above it. */
         newY = middleY - event.pageY;
-        var diff = newY / middleY;
-        newX = diff * event.pageX;
-      } else {
-        newY = 0;
-        newX = 0;
       }
+
+      if (event.pageX > middleX) {
+        newX = event.pageX - middleX;
+      } else if (event.pageX < middleX) {
+        newX = middleX - event.pageX;
+      }
+      
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
       var percentage = degrees / 360;
