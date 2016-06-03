@@ -18,6 +18,7 @@ updates.</p>
 </div>
 
 <div class="row">
+  <p id='middle'></p>
   <p id='where'></p>
   <p id='position'></p>
   <p id='angle'></p>
@@ -51,6 +52,7 @@ updates.</p>
         middleX = position.left + (realWidth/2);
         middleY = position.top + (realHeight/2);
         done = 1;
+        $('#middle').text(middleX + ', ' + middleY);
       } /* I hope this doesn't fire every time. */
     });
 
@@ -89,7 +91,7 @@ updates.</p>
       if (degrees > 90) {
         degrees = 180 - degrees;
       }
-//      degrees += add;
+      degrees += add;
       var percentage = degrees / 360;
 
       $('#angle').text(degrees);
