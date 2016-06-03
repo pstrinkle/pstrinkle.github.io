@@ -33,6 +33,19 @@ of this.</p>
     var realHeight = $gb.outerHeight();
     var middleX = position.left + (realWidth/2);
     var middleY = position.top + (realHeight/2);
+    
+    var $d = $(document);
+    var dw = $d.width();
+    var dh = $d.height();
+    
+    /* try to determine maximum possible distance from button;
+     * forget maximum length of the given vector --- which we could compute
+     * ... maybe later.
+     */
+     
+    var maxD = pythag(middleX, middleY, dw, dh);
+    
+    // $( document ).width();
 
     /* 0 0 60px 30px #fff */
     /* in order: x offset, y offset, blur size, spread size, color */
@@ -44,9 +57,21 @@ of this.</p>
 //        0 0 60px 30px #fff,  /* inner white */
 //        0 0 140px 90px #0ff; /* outer cyan */
 
-    $(document).mousemove(function(event) {
+    $d.mousemove(function(event) {
+      var dis = pythag(event.pageX, event.pageY, middleX, middleY);
+
       $('#where').text(event.pageX + ", " + event.pageY);
-      $('#distance').text(pythag(event.pageX, event.pageY, middleX, middleY));
+      $('#distance').text(dis);
+
+      var xyper = dis / maxD;
+      /* maximum blur size 360px. */
+      var glow = xyper * 360;
+      glow = Math.round(glow);
+
+      var spread = glow / 2;
+      $gb.css('box-shadow', '0 0 ' + glow + 'px' + ' ' + spread + 'px #fff');
+
+
     })
   });
 </script>
