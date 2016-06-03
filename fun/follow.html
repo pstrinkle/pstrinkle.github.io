@@ -88,9 +88,9 @@ updates.</p>
       $('#position').text('x ' + newX + ', y ' + newY);
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
-      //if (degrees > 90) {
-      //  degrees = 180 - degrees;
-      //}
+      if (degrees > 90) {
+        degrees = 180 - degrees;
+      }
       //degrees += add;
       if (add) {
         degrees = 90 - degrees;
