@@ -51,12 +51,13 @@ updates.</p>
       /* To leverage Math.atan2() I need to base their location off the circle as the x,y,0,0
        * 
        * I may need to update X...
+       * I'll need to use a piece of paper to determine the transform, or I could just use a different approach.
        */
       var newY = (event.pageY >= middleY) ? event.pageY - middleY : middleY - event.pageY;
-      var rads = Math.atan2(newY, event.pageX);
+      var radians = Math.atan2(newY, event.pageX);
       var degrees = radians * (180 / Math.PI);
-      
       var percentage = degrees / 360;
+
       $('#c_circle').circleProgress('value', percentage);
     })
   });
