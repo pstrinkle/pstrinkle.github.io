@@ -10,19 +10,47 @@ updates.</p>
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-2"></div>
-  <div class="col-md-4"><div id="c_circle"></div></div>
+  <div class="col-md-4">
+    <div id="c_circle"></div>
+  </div>
   <div class="col-md-2"></div>
   <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+  <p id='where'></p>
 </div>
 
 <script src="{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
 
 <script>
   $(function() {
+    function pythag(x1, y1, x2, y2) {
+      var x = x2 - x1;
+      var y = y2 - y1;
+      var a = (x * x) + (y * y);
+      return Math.sqrt(a);
+    }
+
+    var $gb = $('#c_circle');
+    var position = $gb.offset();
+    var realWidth = $gb.outerWidth();
+    var realHeight = $gb.outerHeight();
+    var middleX = position.left + (realWidth/2);
+    var middleY = position.top + (realHeight/2);
+    
+    var $d = $(document);
+    var dw = $d.width();
+    var dh = $d.height();
+
     $('#c_circle').circleProgress({
       value: 0.75,
       size: 100,
       fill: { gradient: ["white", "blue"] }
     });
+
+    $d.mousemove(function(event) {
+      $('#where').text(event.pageX + ", " + event.pageY);
+    })
   });
 </script>
