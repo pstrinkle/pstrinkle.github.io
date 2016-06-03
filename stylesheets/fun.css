@@ -1,0 +1,18 @@
+/* although it will be used on other pages, I don't want it accidentally 
+ * overwritten (someone pasting in their file) if I put it in a larger css file.
+ */
+/* quarter-second animated transition */
+.qsat {
+    -webkit-transition: all 0.25s; // Chrome
+    -moz-transition: all 0.25s; // Mozilla
+    -o-transition: all 0.25s; // Opera
+    transition: all 0.25s;
+}
+
+.animated-icon-wrap { position: relative; overflow: visible; }
+.animated-icon-wrap::after { content: ""; display: table; clear: both; }
+/* this is used with animated-icon-wrap and the 
+ * transition animation classes to prevent it 
+ * from growing the parent.
+ */
+.animated-jump-out-z { position: absolute; z-index: 999; }
