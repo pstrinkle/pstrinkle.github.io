@@ -72,17 +72,17 @@ updates.</p>
         /* upper right. */
         newY = middleY - event.pageY;
         newX = event.pageX - middleX;
-        add = 90;
+        add = .25;
       } else if (event.pageY > middleY && event.pageX > middleX) {
         /* lower right. */
         newY = event.pageY - middleY;
         newX = event.pageX - middleX;
-        add = 180;
+        add = .5;
       } else if (event.pageY > middleY && event.pageX < middleX) {
         /* lower left. */
         newY = event.pageY - middleY;
         newX = middleX - event.pageX;
-        add = 270;
+        add = .75;
       }
 
       $('#position').text('x ' + newX + ', y ' + newY);
@@ -93,6 +93,7 @@ updates.</p>
       }
       //degrees += add;
       var percentage = degrees / 360;
+      percentage += add;
 
       $('#angle').text(degrees);
       $('#c_circle').circleProgress('value', percentage);
