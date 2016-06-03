@@ -12,6 +12,7 @@ of this.</p>
     <button id='glowButton' class="btn btn-default" type="submit">Button</button>
   </center>
   <p id='buttonPlace'>button position: </p>
+  <p id='buttonDim'>button dimensions: </p>
 </div>
 
 <div class="row">
@@ -21,7 +22,11 @@ of this.</p>
 <script>
   $(function() {
     var position = $('#glowButton').offset();
-    $('#buttonPlace').text(JSON.stringify(position));
+    $('#buttonPlace').append(JSON.stringify(position));
+    $('#buttonDim').append('width: ' + $('#glowButton').width());
+    $('#buttonDim').append('owidth: ' + $('#glowButton').outerWidth());
+    $('#buttonDim').append('height: ' + $('#glowButton').height());
+    $('#buttonDim').append('oheight: ' + $('#glowButton').outerHeight());
 
     $(document).mousemove(function(event) {
       $('#where').text(event.pageX + ", " + event.pageY);
