@@ -18,7 +18,10 @@ updates.</p>
 </div>
 
 <div class="row">
+  <p id='middle'></p>
   <p id='where'></p>
+  <p id='position'></p>
+  <p id='angle'></p>
 </div>
 
 <script src="{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
@@ -32,32 +35,70 @@ updates.</p>
       return Math.sqrt(a);
     }
 
-    var $gb = $('#c_circle');
-    var position = $gb.offset();
-    var realWidth = $gb.outerWidth();
-    var realHeight = $gb.outerHeight();
-    var middleX = position.left + (realWidth/2);
-    var middleY = position.top + (realHeight/2);
+    var middleX, middleY;
+    var done = 0;
 
     $('#c_circle').circleProgress({
       value: 0.75,
       size: 100,
-      fill: { gradient: ["white", "blue"] }
+      fill: { gradient: ["white", "blue"] },
+      animation : { duration: 10 },
+    }).on('circle-animation-end', function(event) {
+      if (0 == done) {
+        var $gb = $('#c_circle'); /* this */
+        var position = $gb.offset();
+        var realWidth = $gb.outerWidth();
+        var realHeight = $gb.outerHeight();
+        middleX = position.left + (100/2);
+        middleY = position.top + (100/2);
+        done = 1;
+        $('#middle').text(middleX + ', ' + middleY);
+      } /* I hope this doesn't fire every time. */
     });
 
     $(document).mousemove(function(event) {
       $('#where').text(event.pageX + ", " + event.pageY);
       
-      /* To leverage Math.atan2() I need to base their location off the circle as the x,y,0,0
-       * 
-       * I may need to update X...
-       * I'll need to use a piece of paper to determine the transform, or I could just use a different approach.
-       */
-      var newY = (event.pageY >= middleY) ? event.pageY - middleY : middleY - event.pageY;
-      var radians = Math.atan2(newY, event.pageX);
-      var degrees = radians * (180 / Math.PI);
-      var percentage = degrees / 360;
+      var newY = 0;
+      var newX = 0;
+      var add = 0;
 
+      /* done together in just four quadrants. */
+      if (event.pageY < middleY && event.pageX < middleX) {
+        /* upper left. */
+        newY = middleY - event.pageY;
+        newX = middleX - event.pageX;
+      } else if (event.pageY < middleY && event.pageX > middleX) {
+        /* upper right. */
+        newY = middleY - event.pageY;
+        newX = event.pageX - middleX;
+        add = 0.25;
+      } else if (event.pageY > middleY && event.pageX > middleX) {
+        /* lower right. */
+        newY = event.pageY - middleY;
+        newX = event.pageX - middleX;
+        add = 0.5;
+      } else if (event.pageY > middleY && event.pageX < middleX) {
+        /* lower left. */
+        newY = event.pageY - middleY;
+        newX = middleX - event.pageX;
+        add = 0.75;
+      }
+
+      $('#position').text('x ' + newX + ', y ' + newY);
+      var radians = Math.atan2(newY, newX);
+      var degrees = radians * (180 / Math.PI);
+      if (degrees > 90) {
+        degrees = 180 - degrees;
+      }
+      //degrees += add;
+      if (add == 0.25 || add == 0.75) {
+        degrees = 90 - degrees;
+      }
+      var percentage = degrees / 360;
+      percentage += add;
+
+      $('#angle').text(degrees);
       $('#c_circle').circleProgress('value', percentage);
     })
   });
