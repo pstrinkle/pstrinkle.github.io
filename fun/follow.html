@@ -28,18 +28,11 @@ updates.</p>
 
 <script>
   $(function() {
-    function pythag(x1, y1, x2, y2) {
-      var x = x2 - x1;
-      var y = y2 - y1;
-      var a = (x * x) + (y * y);
-      return Math.sqrt(a);
-    }
-
     var middleX, middleY;
     var done = 0;
 
     $('#c_circle').circleProgress({
-      value: 0.75,
+      value: 0.0,
       size: 100,
       fill: { gradient: ["white", "blue"] },
       animation : { duration: 10 },
@@ -91,7 +84,7 @@ updates.</p>
       if (degrees > 90) {
         degrees = 180 - degrees;
       }
-      //degrees += add;
+      /* handle the special cases. */
       if (add == 0.25 || add == 0.75) {
         degrees = 90 - degrees;
       }
