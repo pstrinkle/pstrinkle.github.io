@@ -78,6 +78,9 @@ updates.</p>
 
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
+      if (degrees > 90) {
+        degrees = 180 - degrees;
+      }
       degrees += add;
       var percentage = degrees / 360;
 
