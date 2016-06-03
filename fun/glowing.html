@@ -44,18 +44,10 @@ of this.</p>
      */
      
     var maxD = pythag(middleX, middleY, dw, dh);
-    
-    // $( document ).width();
 
     /* 0 0 60px 30px #fff */
     /* in order: x offset, y offset, blur size, spread size, color */
     /* blur size and spread size are optional (they default to 0) */
-
-//    $gb.css('box-shadow', '0 0 60px 30px #fff');
-
-//    box-shadow:
-//        0 0 60px 30px #fff,  /* inner white */
-//        0 0 140px 90px #0ff; /* outer cyan */
 
     $d.mousemove(function(event) {
       var dis = pythag(event.pageX, event.pageY, middleX, middleY);
@@ -70,8 +62,6 @@ of this.</p>
 
       var spread = glow / 2;
       $gb.css('box-shadow', '0 0 ' + glow + 'px' + ' ' + spread + 'px #fff');
-
-
     })
   });
 </script>
