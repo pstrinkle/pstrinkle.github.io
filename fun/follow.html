@@ -19,6 +19,7 @@ updates.</p>
 
 <div class="row">
   <p id='where'></p>
+  <p id='angle'></p>
 </div>
 
 <script src="{{ site.github.url }}/javascripts/jquery-circle-progress/circle-progress.js"></script>
@@ -59,6 +60,7 @@ updates.</p>
       var degrees = radians * (180 / Math.PI);
       var percentage = degrees / 360;
 
+      $('#angle').text(degrees);
       $('#c_circle').circleProgress('value', percentage);
     })
   });
