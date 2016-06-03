@@ -72,17 +72,17 @@ updates.</p>
         /* upper right. */
         newY = middleY - event.pageY;
         newX = event.pageX - middleX;
-        add = .25;
+        add = 0.25;
       } else if (event.pageY > middleY && event.pageX > middleX) {
         /* lower right. */
         newY = event.pageY - middleY;
         newX = event.pageX - middleX;
-        add = .5;
+        add = 0.5;
       } else if (event.pageY > middleY && event.pageX < middleX) {
         /* lower left. */
         newY = event.pageY - middleY;
         newX = middleX - event.pageX;
-        add = .75;
+        add = 0.75;
       }
 
       $('#position').text('x ' + newX + ', y ' + newY);
@@ -92,7 +92,7 @@ updates.</p>
         degrees = 180 - degrees;
       }
       //degrees += add;
-      if (add) {
+      if (add == 0.25 || add == 0.75) {
         degrees = 90 - degrees;
       }
       var percentage = degrees / 360;
