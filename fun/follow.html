@@ -38,10 +38,6 @@ updates.</p>
     var realHeight = $gb.outerHeight();
     var middleX = position.left + (realWidth/2);
     var middleY = position.top + (realHeight/2);
-    
-    var $d = $(document);
-    var dw = $d.width();
-    var dh = $d.height();
 
     $('#c_circle').circleProgress({
       value: 0.75,
@@ -49,8 +45,19 @@ updates.</p>
       fill: { gradient: ["white", "blue"] }
     });
 
-    $d.mousemove(function(event) {
+    $(document).mousemove(function(event) {
       $('#where').text(event.pageX + ", " + event.pageY);
+      
+      /* To leverage Math.atan2() I need to base their location off the circle as the x,y,0,0
+       * 
+       * I may need to update X...
+       */
+      var newY = (event.pageY >= middleY) ? event.pageY - middleY : middleY - event.pageY;
+      var rads = Math.atan2(newY, event.pageX);
+      var degrees = radians * (180 / Math.PI);
+      
+      var percentage = degrees / 360;
+      $('#c_circle').circleProgress('value', percentage);
     })
   });
 </script>
