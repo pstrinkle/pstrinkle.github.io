@@ -11,25 +11,31 @@ of this.</p>
   <center>
     <button id='glowButton' class="btn btn-default" type="submit">Button</button>
   </center>
-  <p id='buttonPlace'>button position: </p>
-  <p id='buttonDim'>button dimensions: </p>
 </div>
 
 <div class="row">
   <p id='where'></p>
+  <p id='distance'></p>
 </div>
 
 <script>
   $(function() {
+    function pythag(x1, y1, x2, y2) {
+      var x = x2 - x1;
+      var y = y2 - y1;
+      var a = (x * x) + (y * y);
+      return Math.sqrt(a);
+    }
+
     var position = $('#glowButton').offset();
-    $('#buttonPlace').append(JSON.stringify(position));
-    $('#buttonDim').append('width: ' + $('#glowButton').width());
-    $('#buttonDim').append('owidth: ' + $('#glowButton').outerWidth());
-    $('#buttonDim').append('height: ' + $('#glowButton').height());
-    $('#buttonDim').append('oheight: ' + $('#glowButton').outerHeight());
+    var realWidth = $('#glowButton').outerWidth();
+    var realHeight = $('#glowButton').outerHeight();
+    var middleX = position.left + (realWidth/2);
+    var middleY = position.top + (realHeight/2);
 
     $(document).mousemove(function(event) {
       $('#where').text(event.pageX + ", " + event.pageY);
+      $('#distance').text(pythag(event.pageX, event.pageY, middleX, middleY));
     })
   });
 </script>
