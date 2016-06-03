@@ -52,27 +52,33 @@ updates.</p>
       
       var newY = 0;
       var newX = 0;
-      /* To leverage Math.atan2() I need to base their location off the circle as the x,y,0,0
-       * 
-       * I may need to update X...
-       * I'll need to use a piece of paper to determine the transform, or I could just use a different approach.
-       */
-      if (event.pageY > middleY) {
-        /* we are below it. */
-        newY = event.pageY - middleY;
-      } else if (event.pageY < middleY) {
-        /* we are above it. */
+      var add = 0;
+
+      /* done together in just four quadrants. */
+      if (event.pageY < middleY && event.pageX < middleX) {
+        /* upper left. */
         newY = middleY - event.pageY;
+        newX = middleX - event.pageX;
+      } else if (event.pageY < middleY && event.pageX > middleX) {
+        /* upper right. */
+        newY = middleY - event.pageY;
+        newX = event.pageX - middleX;
+        add = 90;
+      } else if (event.pageY > middleY && event.pageX > middleX) {
+        /* lower right. */
+        newY = event.pageY - middleY;
+        newX = event.pageX - middleX;
+        add = 180;
+      } else if (event.pageY > middleY && event.pageX < middleX) {
+        /* lower left. */
+        newY = event.pageY - middleY;
+        newX = middleX - event.pageX;
+        add = 270;
       }
 
-      if (event.pageX > middleX) {
-        newX = event.pageX - middleX;
-      } else if (event.pageX < middleX) {
-        newX = middleX - event.pageX;
-      }
-      
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
+      degrees += add;
       var percentage = degrees / 360;
 
       $('#angle').text(degrees);
