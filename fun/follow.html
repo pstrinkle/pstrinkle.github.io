@@ -19,6 +19,7 @@ updates.</p>
 
 <div class="row">
   <p id='where'></p>
+  <p id='position'></p>
   <p id='angle'></p>
 </div>
 
@@ -76,6 +77,7 @@ updates.</p>
         add = 270;
       }
 
+      $('#position').text('x ' + newX + ', y ' + newY);
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
       if (degrees > 90) {
