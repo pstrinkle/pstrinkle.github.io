@@ -71,3 +71,15 @@ title: my\ CV
     <li>Analyst/Software Engineer - DoD &gt;&gt; 5 yrs, 1 mo</li>
   </ul>
 </section>
+
+<script>
+  $(function() {
+    $('.more').on('click', function(event) {
+      event.preventDefault(); // no href for you!
+      var t = this;
+      $('#' + $(t).attr('href')).slideToggle({complete: function() {
+        $(t).remove(); // only have this once, no reason to toggle
+      }});
+    });
+  });
+</script>
