@@ -54,5 +54,55 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
       middleY = position.top + (100/2);
       $('#middle').text(middleX + ', ' + middleY);
     })();
+
+    $(document).mousemove(function(event) {
+      $('#where').text(event.pageX + ", " + event.pageY);
+      
+      var newY = 0;
+      var newX = 0;
+      var add = 0;
+
+      /* done together in just four quadrants. */
+      if (event.pageY < middleY && event.pageX < middleX) {
+        /* upper left. */
+        newY = middleY - event.pageY;
+        newX = middleX - event.pageX;
+      } else if (event.pageY < middleY && event.pageX > middleX) {
+        /* upper right. */
+        newY = middleY - event.pageY;
+        newX = event.pageX - middleX;
+        add = 0.25;
+      } else if (event.pageY > middleY && event.pageX > middleX) {
+        /* lower right. */
+        newY = event.pageY - middleY;
+        newX = event.pageX - middleX;
+        add = 0.5;
+      } else if (event.pageY > middleY && event.pageX < middleX) {
+        /* lower left. */
+        newY = event.pageY - middleY;
+        newX = middleX - event.pageX;
+        add = 0.75;
+      }
+
+      $('#position').text('x ' + newX + ', y ' + newY);
+      var radians = Math.atan2(newY, newX);
+      var degrees = radians * (180 / Math.PI);
+      if (degrees > 90) {
+        degrees = 180 - degrees;
+      }
+      /* handle the special cases. */
+      if (add == 0.25 || add == 0.75) {
+        degrees = 90 - degrees;
+      }
+      var percentage = degrees / 360;
+      percentage += add;
+
+      $('#angle').text(degrees);
+      
+      // rotate the eye...
+      var canvas = document.getElementById("eye");
+      var ctx = canvas.getContext("2d");
+      ctx.rotate(degrees*(Math.PI/180));
+    });
   });
 </script>
