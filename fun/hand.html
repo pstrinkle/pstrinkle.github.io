@@ -1,0 +1,42 @@
+---
+layout: fun
+title: hand
+---
+<p>Fun animation I did where given some event you make the hand sort of appear to 
+grow on the page to draw attention to something.  What is cool about this, in my opinion
+ is that I did it in such a way that the neighboring text doesn't move.</p>
+
+<div class="row">
+  <i class="fa fa-hand-o-down qsat" id='lookhere'></i><i class="fa fa-hand-o-down" id='backgroundguy'></i> Support this campaign by selecting a perk
+</div>
+
+<br />
+<br />
+
+<div class="row">
+  <button id='activate' class="btn btn-default" type="submit">Activatr</button>
+</div>
+
+<script>
+  $(function() {
+    $('#backgroundguy').hide();
+    
+    $('#activate').on('click', function(event) {
+      event.preventDefault();
+      $(this).blur();
+
+      var $guy = $('#lookhere');
+      var $bguy = $('#backgroundguy');
+      $guy.addClass('animated-jump-out-z');
+      $guy.addClass('fa-4x');
+      $bguy.show();
+      setTimeout(function(){
+        $guy.removeClass('fa-4x');
+        setTimeout(function() {
+          $guy.removeClass('animated-jump-out-z');
+          $bguy.hide();
+        }, 250);
+      }, 250);
+    });
+  });
+</script>
