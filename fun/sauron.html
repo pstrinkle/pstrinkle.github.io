@@ -20,7 +20,7 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
   $(function() {
     var middleX, middleY;
 
-    (function() {
+    var drawArc = function() {
       /* https://jsfiddle.net/patrickactivatr/s310h382/ */
       var canvas = document.getElementById('eye');
       var ctx = canvas.getContext('2d');
@@ -43,7 +43,9 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
       // line color
       ctx.strokeStyle = gradient;
       ctx.stroke();
-    })();
+    };
+    
+    drawArc();
 
     (function() {
       var $gb = $('#eye');
