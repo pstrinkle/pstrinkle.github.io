@@ -6,20 +6,25 @@ title: sauron
 follow the mouse position.  Similar to my <a href="follow.html">follow</a> javascript.</p>
 
 <div class="row">
-  <canvas id='eye' height="100" width="100" />
+  <canvas id='eye' height="220" width="220" />
 </div>
 
 <script>
   $(function() {
+    /* https://jsfiddle.net/patrickactivatr/s310h382/ */
     var canvas = document.getElementById('eye');
     var ctx = canvas.getContext('2d');
     var x = canvas.width / 2;
     var y = canvas.height / 2;
-    var radius = 25;
+    var radius = 100;
 
-    var gradient = ctx.createLinearGradient(0,0,radius,0);
-    gradient.addColorStop("0.0","orange");
-    gradient.addColorStop("1.0","red");
+    // x1, y1, x2, y2
+    // create a linear gradient over the line defined by the points.
+    var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
+    gradient.addColorStop("0.0","white");
+    gradient.addColorStop("0.3","red");
+    gradient.addColorStop("0.7","red");
+    gradient.addColorStop("1.0","white");
 
     ctx.beginPath();
     ctx.arc(x, y, radius, Math.PI, 0, false);
