@@ -1,0 +1,83 @@
+---
+layout: fun
+title: levelup
+---
+
+<p>I wrote this as a +1, -1 animation for a view I needed, and it was fun.  Here's an attempt at reproducing it on this site.  I had a 
+fun time writing this because JavaScript animations can be fun.</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel-heading">
+      <i class="fa fa-twitter-square fa-lg" style="color: #2AA9E0;"></i>&nbsp;Twitter <span style="float:right;">select <span style="font-weight: bold;" id='twitter_cnt'></span> more post(s)</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  var counters = {'twitter' : 0};
+
+  function animateIncrement($tw, element) {
+    var p = $tw.position();
+    var h = $tw.height();
+    var w = $tw.width();
+    var nl = p.left + w; // start it all the way to the left, then figure out its width
+    var nt = p.top - h; // they have the same height, so just position it above by the height.
+    var $x = $('<span>', {text: "+1", style: getStyle(nt, nl) });
+    // width is 0 until it's rendered.
+    $tw.parent().append($x);
+    var realWidth = $x.width();
+    var newerLeft = nl - realWidth;
+    $x.css('left', newerLeft + 'px');
+
+    // lower if after ~1/4th of a second.
+    setTimeout(function(){
+      $x.addClass('qsat');
+      var e = nt + (h);
+      $x.css('top', e + 'px');
+      setTimeout(function() {
+        $x.remove();
+        $tw.text(counters[element]); // so it goes up correctly
+      }, 250);
+    }, 100);
+  }
+
+  function animateDecrement($tw, element) {
+    var p = $tw.position();
+    var h = $tw.height();
+    var w = $tw.width();            
+    var nl = p.left + w; // start it all the way to the left, then figure out its width
+    var nt = p.top; // they have the same height, so just position it at the same place.
+    var $x = $('<span>', {text: "-1", style: getStyle(nt, nl) });
+    // width is 0 until it's rendered.
+    $tw.parent().append($x);
+    var realWidth = $x.width();
+    var newerLeft = nl - realWidth;
+    $x.css('left', newerLeft + 'px');
+
+    // lower if after 1/10th of a second, this is better.
+    setTimeout(function(){
+      $x.addClass('qsat');
+      var e = nt + (h);
+      $x.css('top', e + 'px');
+      setTimeout(function() {
+        $x.remove();
+        $tw.text(counters[element]); // so it goes up correctly
+      }, 250);
+    }, 100);
+  }
+
+  function increment(social) {
+    counters[social] += 1;
+    animateIncrement($('#' + social + '_cnt'), social);
+  }
+
+  function decrement(social) {
+    counters[social] -= 1;
+    animateDecrement($('#' + social + '_cnt'), social);
+  }
+
+  $(function() {
+    $('#twitter_cnt').text(0);
+  });
+</script>
