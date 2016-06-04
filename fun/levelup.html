@@ -24,6 +24,10 @@ fun time writing this because JavaScript animations can be fun.</p>
 <script>
   var counters = {'twitter' : 0};
 
+  function getStyle(top, left) {
+    return "font-weight: bold; position: absolute; top: " + top + "px; left: " + left + "px; z-index : 999;"
+  }
+
   function animateIncrement($tw, element) {
     var p = $tw.position();
     var h = $tw.height();
