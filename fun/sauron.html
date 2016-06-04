@@ -25,7 +25,6 @@ canvas in an image and store it and then insert it into a canvas as a new image.
 <script>
   $(function() {
     var middleX, middleY;
-    var prevDegrees = 90;
 
     var drawArc = function() {
       /* https://jsfiddle.net/patrickactivatr/s310h382/ */
@@ -110,16 +109,13 @@ canvas in an image and store it and then insert it into a canvas as a new image.
 
       $('#angle').text(degrees);
 
-      var nd = degrees - prevDegrees;
-      prevDegrees = nd;
-
       // rotate the eye...
       var $cvs = $('#eye');
-      $cvs.css('-ms-transform', 'rotate(' + nd + 'deg)');
-      $cvs.css('-o-transform', 'rotate(' + nd + 'deg)');
-      $cvs.css('-webkit-transform', 'rotate(' + nd + 'deg)');
-      $cvs.css('-moz-transform', 'rotate(' + nd + 'deg)');
-
+      // the degrees in this transform are absolute!
+      $cvs.css('-ms-transform', 'rotate(' + degrees + 'deg)');
+      $cvs.css('-o-transform', 'rotate(' + degrees + 'deg)');
+      $cvs.css('-webkit-transform', 'rotate(' + degrees + 'deg)');
+      $cvs.css('-moz-transform', 'rotate(' + degrees + 'deg)');
     });
   });
 </script>
