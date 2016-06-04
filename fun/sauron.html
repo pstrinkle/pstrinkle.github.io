@@ -7,7 +7,9 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
 
 You can the rotation with CSS, but I wanted to try making the element drawn within the canvas rotate,
 which apparently isn't possible without redrawing the canvas (there is an idea that you can store the
-original canvas an as image into the new rotation which might be faster?)</p>
+original canvas an as image into the new rotation which might be faster?).
+
+If you rotate with CSS, make sure it's a square. :)</p>
 
 <div class="row">
   <canvas id='eye' height="220" width="220" />
@@ -106,11 +108,14 @@ original canvas an as image into the new rotation which might be faster?)</p>
       percentage += add;
 
       $('#angle').text(degrees);
-      
+
       // rotate the eye...
-      var canvas = document.getElementById("eye");
-      var ctx = canvas.getContext("2d");
-      ctx.rotate(degrees*(Math.PI/180));
+      var $cvs = $('#eye');
+      $cvs.css('-ms-transform', 'rotate(' + degrees + ')');
+      $cvs.css('-o-transform', 'rotate(' + degrees + ')');
+      $cvs.css('-webkit-transform', 'rotate(' + degrees + ')');
+      $cvs.css('-moz-transform', 'rotate(' + degrees + ')');
+
     });
   });
 </script>
