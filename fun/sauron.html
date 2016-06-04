@@ -16,10 +16,11 @@ canvas in an image and store it and then insert it into a canvas as a new image.
 </div>
 
 <div class="row">
-  <p id='middle'></p>
-  <p id='where'></p>
-  <p id='position'></p>
-  <p id='angle'></p>
+  <p>middle: <span id='middle'></span></p>
+  <p>mouse: <span id='where'></span></p>
+  <p>adjusted: <span id='position'></span></p>
+  <p>angle: <span id='angle'></span></p>
+  <p>quadrant: <span id='quadrant'></span></p>
 </div>
 
 <script>
@@ -67,6 +68,7 @@ canvas in an image and store it and then insert it into a canvas as a new image.
 
     $(document).mousemove(function(event) {
       $('#where').text(event.pageX + ", " + event.pageY);
+      $('#quadrant').text('');
       
       var newY = 0;
       var newX = 0;
@@ -77,21 +79,25 @@ canvas in an image and store it and then insert it into a canvas as a new image.
         /* upper left. */
         newY = middleY - event.pageY;
         newX = middleX - event.pageX;
+        $('#quadrant').text('upper left');
       } else if (event.pageY < middleY && event.pageX > middleX) {
         /* upper right. */
         newY = middleY - event.pageY;
         newX = event.pageX - middleX;
         add = 0.25 * 360;
+        $('#quadrant').text('upper right');
       } else if (event.pageY > middleY && event.pageX > middleX) {
         /* lower right. */
         newY = event.pageY - middleY;
         newX = event.pageX - middleX;
         add = 0.5 * 360;
+        $('#quadrant').text('lower right');
       } else if (event.pageY > middleY && event.pageX < middleX) {
         /* lower left. */
         newY = event.pageY - middleY;
         newX = middleX - event.pageX;
         add = 0.75 * 360;
+        $('#quadrant').text('lower left');
       }
 
       $('#position').text('x ' + newX + ', y ' + newY);
@@ -104,6 +110,8 @@ canvas in an image and store it and then insert it into a canvas as a new image.
       //if (add == 0.25*360 || add == 0.75*360) {
       //  degrees = 90 - degrees;
       //}
+
+      degrees += add;
 
       $('#angle').text(degrees);
 
