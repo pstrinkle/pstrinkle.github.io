@@ -76,7 +76,7 @@ updates.</p>
         newY = event.pageY - middleY;
         newX = middleX - event.pageX;
         add = 0.75;
-      }
+      } /* presently ignores four other areas when you're on an axis. */
 
       $('#position').text('x ' + newX + ', y ' + newY);
       var radians = Math.atan2(newY, newX);
