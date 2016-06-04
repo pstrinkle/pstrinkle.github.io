@@ -38,14 +38,6 @@ drawn any conclusions, and I wouldn't want anyone else to, so I'm including here
 
 <script>
   $(function() {
-    $('.more').on('click', function(event) {
-      event.preventDefault(); // no href for you!
-      var t = this;
-      $('#' + $(t).attr('href')).slideToggle({complete: function() {
-        $(t).remove(); // only have this once, no reason to toggle
-      }});
-    });
-
     /* I spent 20 minutes playing with matching primary technologies per job over the past 
      * several years and came up with these values.
      * 
