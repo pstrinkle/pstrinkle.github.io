@@ -2,14 +2,14 @@
 layout: fun
 title: sauron
 ---
-<p>Attempt at creating an arc that doesn't really look like the eye of sauron but rotates to 
+<p>
+  Attempt at creating an arc that doesn't really look like the eye of sauron but rotates to 
 follow the mouse position.  Similar to my <a href="follow.html">follow</a> javascript.
 
-You can the rotation with CSS, but I wanted to try making the element drawn within the canvas rotate,
-which apparently isn't possible without redrawing the canvas (there is an idea that you can store the
-original canvas an as image into the new rotation which might be faster?).
-
-If you rotate with CSS, make sure it's a square. :)</p>
+You can the rotation with canvas with CSS, and if it's a square it'll still look fine and should render
+ more quickly than if you redraw the canvas to rotate the drawing of the image.  You can capture the original
+canvas in an image and store it and then insert it into a canvas as a new image.
+</p>
 
 <div class="row">
   <canvas id='eye' height="220" width="220" />
@@ -25,6 +25,7 @@ If you rotate with CSS, make sure it's a square. :)</p>
 <script>
   $(function() {
     var middleX, middleY;
+    var prevDegrees = 90;
 
     var drawArc = function() {
       /* https://jsfiddle.net/patrickactivatr/s310h382/ */
@@ -109,12 +110,15 @@ If you rotate with CSS, make sure it's a square. :)</p>
 
       $('#angle').text(degrees);
 
+      var nd = degrees - prevDegrees;
+      prevDegrees = nd;
+
       // rotate the eye...
       var $cvs = $('#eye');
-      $cvs.css('-ms-transform', 'rotate(' + degrees + 'deg)');
-      $cvs.css('-o-transform', 'rotate(' + degrees + 'deg)');
-      $cvs.css('-webkit-transform', 'rotate(' + degrees + 'deg)');
-      $cvs.css('-moz-transform', 'rotate(' + degrees + 'deg)');
+      $cvs.css('-ms-transform', 'rotate(' + nd + 'deg)');
+      $cvs.css('-o-transform', 'rotate(' + nd + 'deg)');
+      $cvs.css('-webkit-transform', 'rotate(' + nd + 'deg)');
+      $cvs.css('-moz-transform', 'rotate(' + nd + 'deg)');
 
     });
   });
