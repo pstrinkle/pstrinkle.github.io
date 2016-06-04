@@ -3,7 +3,11 @@ layout: fun
 title: sauron
 ---
 <p>Attempt at creating an arc that doesn't really look like the eye of sauron but rotates to 
-follow the mouse position.  Similar to my <a href="follow.html">follow</a> javascript.</p>
+follow the mouse position.  Similar to my <a href="follow.html">follow</a> javascript.
+
+You can the rotation with CSS, but I wanted to try making the element drawn within the canvas rotate,
+which apparently isn't possible without redrawing the canvas (there is an idea that you can store the
+original canvas an as image into the new rotation which might be faster?)</p>
 
 <div class="row">
   <canvas id='eye' height="220" width="220" />
