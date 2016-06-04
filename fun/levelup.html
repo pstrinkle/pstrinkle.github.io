@@ -6,6 +6,9 @@ title: levelup
 <p>I wrote this as a +1, -1 animation for a view I needed, and it was fun.  Here's an attempt at reproducing it on this site.  I had a 
 fun time writing this because JavaScript animations can be fun.</p>
 
+<p>If you click the increment and decrement buttons it'll update the number via a cool custom animation I wrote that makes it look like
+ a video game. :D</p>
+
 <div class="row">
   <div class="col-md-12">
     <i class="fa fa-twitter-square fa-lg" style="color: #2AA9E0;"></i>&nbsp;Twitter <span>select <span style="font-weight: bold;" id='twitter_cnt'></span> more post(s)</span>
@@ -93,10 +96,12 @@ fun time writing this because JavaScript animations can be fun.</p>
     $('#twitter_cnt').text(0);
     $('#incrementBtn').on('click', function(event) {
       event.preventDefault(); /* don't submit. */
+      $(this).blur();
       increment('twitter');
     });
     $('#decrementBtn').on('click', function(event) {
       event.preventDefault(); /* don't submit. */
+      $(this).blur();
       decrement('twitter');
     });
   });
