@@ -75,6 +75,9 @@ canvas in an image and store it and then insert it into a canvas as a new image.
       var newX = 0;
       var add = 0;
       var mul = 1;
+      var quadrant = 0;
+      var QUL = 1;
+      
 
       /* done together in just four quadrants. */
       if (event.pageY < middleY && event.pageX < middleX) {
@@ -83,6 +86,7 @@ canvas in an image and store it and then insert it into a canvas as a new image.
         newX = middleX - event.pageX;
         $('#quadrant').text('upper left');
         mul = -1;
+        quadrant = QUL;
       } else if (event.pageY < middleY && event.pageX > middleX) {
         /* upper right. */
         newY = middleY - event.pageY;
@@ -109,19 +113,11 @@ canvas in an image and store it and then insert it into a canvas as a new image.
 
       $('#pure').text(degrees);
 
-      degrees *= mul;
-/*
-      if (degrees > 90) {
-        degrees = 180 - degrees;
-      }
-
-      // handle the special cases.
-      if (add == 0.25*360 || add == 0.75*360) {
+      if (quadrant == QUL) {
         degrees = 90 - degrees;
+        degrees *= -1;
       }
 
-      degrees += add;
-*/
       $('#angle').text(degrees);
 
       // rotate the eye...
