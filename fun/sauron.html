@@ -17,16 +17,13 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
     var x = canvas.width / 2;
     var y = canvas.height / 2;
     var radius = 25;
-    var startAngle = Math.PI;
-    var endAngle = 0 * Math.PI;
-    var counterClockwise = false;
 
     context.beginPath();
-    context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+    context.arc(x, y, radius, Math.PI, 0, false);
     context.lineWidth = 15;
 
     // line color
-    context.strokeStyle = 'black';
+    context.strokeStyle = 'white';
     context.stroke();
   });
 </script>
