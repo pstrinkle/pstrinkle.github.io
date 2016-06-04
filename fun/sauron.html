@@ -81,17 +81,17 @@ canvas in an image and store it and then insert it into a canvas as a new image.
         /* upper right. */
         newY = middleY - event.pageY;
         newX = event.pageX - middleX;
-        add = 0.25;
+        add = 0.25 * 360;
       } else if (event.pageY > middleY && event.pageX > middleX) {
         /* lower right. */
         newY = event.pageY - middleY;
         newX = event.pageX - middleX;
-        add = 0.5;
+        add = 0.5 * 360;
       } else if (event.pageY > middleY && event.pageX < middleX) {
         /* lower left. */
         newY = event.pageY - middleY;
         newX = middleX - event.pageX;
-        add = 0.75;
+        add = 0.75 * 360;
       }
 
       $('#position').text('x ' + newX + ', y ' + newY);
@@ -101,11 +101,9 @@ canvas in an image and store it and then insert it into a canvas as a new image.
         degrees = 180 - degrees;
       }
       /* handle the special cases. */
-      if (add == 0.25 || add == 0.75) {
+      if (add == 0.25*360 || add == 0.75*360) {
         degrees = 90 - degrees;
       }
-      var percentage = degrees / 360;
-      percentage += add;
 
       $('#angle').text(degrees);
 
