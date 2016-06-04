@@ -12,6 +12,15 @@ fun time writing this because JavaScript animations can be fun.</p>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+    <button id='incrementBtn' class="btn btn-default" type="submit">Increment</button>
+  </div>
+  <div class="col-md-6">
+    <button id='decrementBtn' class="btn btn-default" type="submit">Decrement</button>
+  </div>
+</div>
+
 <script>
   var counters = {'twitter' : 0};
 
@@ -77,5 +86,13 @@ fun time writing this because JavaScript animations can be fun.</p>
 
   $(function() {
     $('#twitter_cnt').text(0);
+    $('#incrementBtn').on('click', function(event) {
+      event.preventDefault(); /* don't submit. */
+      increment('twitter');
+    });
+    $('#decrementBtn').on('click', function(event) {
+      event.preventDefault(); /* don't submit. */
+      decrement('twitter');
+    });
   });
 </script>
