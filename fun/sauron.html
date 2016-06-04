@@ -132,6 +132,10 @@ canvas in an image and store it and then insert it into a canvas as a new image.
         /* west */
         degrees = -90;
         $('#pure').text(degrees);
+      } else if (event.pageX == middleX && event.pageY > middleY) {
+        /* south */
+        degrees = -180;
+        $('#pure').text(degrees);
       }
 
       $('#position').text('x ' + newX + ', y ' + newY);
