@@ -19,6 +19,7 @@ canvas in an image and store it and then insert it into a canvas as a new image.
   <p>middle: <span id='middle'></span></p>
   <p>mouse: <span id='where'></span></p>
   <p>adjusted: <span id='position'></span></p>
+  <p>pure angle: <span id='pure'></span></p>
   <p>angle: <span id='angle'></span></p>
   <p>quadrant: <span id='quadrant'></span></p>
 </div>
@@ -103,9 +104,13 @@ canvas in an image and store it and then insert it into a canvas as a new image.
       $('#position').text('x ' + newX + ', y ' + newY);
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
+
+      $('#pure').text(degrees);
+
       if (degrees > 90) {
         degrees = 180 - degrees;
       }
+
       /* handle the special cases. */
       if (add == 0.25*360 || add == 0.75*360) {
         degrees = 90 - degrees;
