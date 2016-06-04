@@ -28,6 +28,8 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
       var y = canvas.height / 2;
       var radius = 100;
 
+      ctx.clearRect(0,0,canvas.width,canvas.height); 
+
       // x1, y1, x2, y2
       // create a linear gradient over the line defined by the points.
       var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
