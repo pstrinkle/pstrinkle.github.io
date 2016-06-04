@@ -107,10 +107,9 @@ canvas in an image and store it and then insert it into a canvas as a new image.
       var radians = Math.atan2(newY, newX);
       var degrees = radians * (180 / Math.PI);
 
-      degrees *= mul;
-
       $('#pure').text(degrees);
 
+      degrees *= mul;
 /*
       if (degrees > 90) {
         degrees = 180 - degrees;
