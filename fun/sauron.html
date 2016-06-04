@@ -9,29 +9,50 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
   <canvas id='eye' height="220" width="220" />
 </div>
 
+<div class="row">
+  <p id='middle'></p>
+  <p id='where'></p>
+  <p id='position'></p>
+  <p id='angle'></p>
+</div>
+
 <script>
   $(function() {
-    /* https://jsfiddle.net/patrickactivatr/s310h382/ */
-    var canvas = document.getElementById('eye');
-    var ctx = canvas.getContext('2d');
-    var x = canvas.width / 2;
-    var y = canvas.height / 2;
-    var radius = 100;
+    var middleX, middleY;
 
-    // x1, y1, x2, y2
-    // create a linear gradient over the line defined by the points.
-    var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
-    gradient.addColorStop("0.0","white");
-    gradient.addColorStop("0.3","red");
-    gradient.addColorStop("0.7","red");
-    gradient.addColorStop("1.0","white");
+    (function() {
+      /* https://jsfiddle.net/patrickactivatr/s310h382/ */
+      var canvas = document.getElementById('eye');
+      var ctx = canvas.getContext('2d');
+      var x = canvas.width / 2;
+      var y = canvas.height / 2;
+      var radius = 100;
 
-    ctx.beginPath();
-    ctx.arc(x, y, radius, Math.PI, 0, false);
-    ctx.lineWidth = 10;
+      // x1, y1, x2, y2
+      // create a linear gradient over the line defined by the points.
+      var gradient = ctx.createLinearGradient(0,0,canvas.width,0);
+      gradient.addColorStop("0.0","white");
+      gradient.addColorStop("0.3","red");
+      gradient.addColorStop("0.7","red");
+      gradient.addColorStop("1.0","white");
 
-    // line color
-    ctx.strokeStyle = gradient;
-    ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, y, radius, Math.PI, 0, false);
+      ctx.lineWidth = 10;
+
+      // line color
+      ctx.strokeStyle = gradient;
+      ctx.stroke();
+    })();
+
+    (function() {
+      var $gb = $('#eye');
+      var position = $gb.offset();
+      var realWidth = $gb.outerWidth();
+      var realHeight = $gb.outerHeight();
+      middleX = position.left + (100/2);
+      middleY = position.top + (100/2);
+      $('#middle').text(middleX + ', ' + middleY);
+    })();
   });
 </script>
