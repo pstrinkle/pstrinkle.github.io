@@ -12,17 +12,21 @@ follow the mouse position.  Similar to my <a href="follow.html">follow</a> javas
 <script>
   $(function() {
     var canvas = document.getElementById('eye');
-    var context = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     var x = canvas.width / 2;
     var y = canvas.height / 2;
     var radius = 25;
 
-    context.beginPath();
-    context.arc(x, y, radius, Math.PI, 0, false);
-    context.lineWidth = 15;
+    var gradient = ctx.createLinearGradient(0,0,radius,0);
+    gradient.addColorStop("0.0","orange");
+    gradient.addColorStop("1.0","red");
+
+    ctx.beginPath();
+    ctx.arc(x, y, radius, Math.PI, 0, false);
+    ctx.lineWidth = 10;
 
     // line color
-    context.strokeStyle = 'white';
-    context.stroke();
+    ctx.strokeStyle = gradient;
+    ctx.stroke();
   });
 </script>
