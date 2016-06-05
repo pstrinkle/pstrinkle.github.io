@@ -120,7 +120,7 @@ fun time writing this because JavaScript animations can be fun.</p>
             if (configOrCommand === 'increment') {
                 /* you want to update this here in case they call it a lot. */
                 return this.each(function() {
-                    var curr = parseInt(this.data(dataName));
+                    var curr = parseInt($(this).data(dataName));
                     var next = curr + commandArgument;
 
                     $(this).data(dataName, next);
@@ -128,7 +128,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 });
             } else if (configOrCommand === 'decrement') {
                 return this.each(function() {
-                    var curr = parseInt(this.data(dataName));
+                    var curr = parseInt($(this).data(dataName));
                     var next = curr - commandArgument;
 
                     $(this).data(dataName, next);
