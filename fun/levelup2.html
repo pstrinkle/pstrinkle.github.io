@@ -82,7 +82,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text(next); // so it goes down correctly
+                    $tw.text(this.data(dataName)); // so it goes down correctly
                 }, 250);
             }, 100);
         }
@@ -107,11 +107,15 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text(next);
+                    $tw.text(this.data(dataName));
                 }, 250);
             }, 100);
         }
 
+        /* It is possible that the text will be updated out of sequence
+         * because of the timeouts, that you might not end up with the
+         * right value, so the right value is basically always in data.
+         */
         if (typeof configOrCommand == 'string') {
             var curr = parseInt(this.data(dataName));
 
