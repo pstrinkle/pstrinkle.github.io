@@ -117,18 +117,20 @@ fun time writing this because JavaScript animations can be fun.</p>
          * right value, so the right value is basically always in data.
          */
         if (typeof configOrCommand == 'string') {
-            var curr = parseInt(this.data(dataName));
-
             if (configOrCommand === 'increment') {
-                var next = curr + commandArgument;
                 /* you want to update this here in case they call it a lot. */
                 return this.each(function() {
+                    var curr = parseInt(this.data(dataName));
+                    var next = curr + commandArgument;
+
                     $(this).data(dataName, next);
                     animateIncrement($(this), commandArgument);
                 });
             } else if (configOrCommand === 'decrement') {
-                var next = curr - commandArgument;
                 return this.each(function() {
+                    var curr = parseInt(this.data(dataName));
+                    var next = curr - commandArgument;
+
                     $(this).data(dataName, next);
                     animateDecrement($(this), commandArgument);
                 });
