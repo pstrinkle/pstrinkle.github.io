@@ -34,10 +34,10 @@ fun time writing this because JavaScript animations can be fun.</p>
        * should support value not being provided, to default as 1
        */
        
-      var trans = {'-webkit-transition' : 'all 0.25s;',
-                   '-moz-transition' : 'all 0.25s;',
-                   '-o-transition' : 'all 0.25s;',
-                   'transition' : 'all 0.25s;'};
+      var trans = {'-webkit-transition' : 'all 0.25s',
+                   '-moz-transition' : 'all 0.25s',
+                   '-o-transition' : 'all 0.25s',
+                   'transition' : 'all 0.25s'};
 
       function getStyle(top, left) {
         /* 
@@ -62,7 +62,7 @@ fun time writing this because JavaScript animations can be fun.</p>
 
         // lower if after 1/10th of a second, this is better.
         setTimeout(function(){
-         $x.css(trans);
+          $x.css(trans);
           var e = nt + (h);
           $x.css('top', e + 'px');
           setTimeout(function() {
