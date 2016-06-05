@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "First Query Plugin"
+title: "First jQuery Plugin"
 date: 2016-06-05
 ---
 
