@@ -1,0 +1,120 @@
+---
+layout: fun
+title: levelup
+---
+
+<p>I wrote this as a +1, -1 animation for a view I needed, and it was fun.  Here's an attempt at reproducing it on this site.  I had a 
+fun time writing this because JavaScript animations can be fun.</p>
+
+<p>If you click the increment and decrement buttons it'll update the number via a cool custom animation I wrote that makes it look like
+ a video game. :D</p>
+
+<p><strong>This version I wrote as a jquery plugin, but I'd like to extend it with more formatting options before I publish it</strong></p>
+
+<div class="row">
+  <div class="col-md-12">
+    <i class="fa fa-twitter-square fa-lg" style="color: #2AA9E0;"></i>&nbsp;Twitter <span>select <span style="font-weight: bold;" id='twitter_cnt'></span> more post(s)</span>
+  </div>
+</div>
+<br />
+<br />
+<div class="row">
+  <div class="col-md-6">
+    <button id='incrementBtn' class="btn btn-default" type="submit">Increment</button>
+  </div>
+  <div class="col-md-6">
+    <button id='decrementBtn' class="btn btn-default" type="submit">Decrement</button>
+  </div>
+</div>
+
+<script>
+  (function ($) {
+    $.fn.levelup = function(options, value) {
+      /* Also need to come up with some options and defaults. :D
+       * should support value not being provided, to default as 1
+       */
+
+      function getStyle(top, left) {
+        /* 
+         * Should it always be bold? or is that incorrect, I can't recall yet.
+         * I should have it check if the thing beneath it is bold?
+         */
+        return "font-weight: bold; position: absolute; top: " + top + "px; left: " + left + "px; z-index : 999;"
+      }
+
+      function animateDecrement($tw, next) {
+        var p = $tw.position();
+        var h = $tw.height();
+        var w = $tw.width();            
+        var nl = p.left + w; // start it all the way to the left, then figure out its width
+        var nt = p.top; // they have the same height, so just position it at the same place.
+        var $x = $('<span>', {text: "-1", style: getStyle(nt, nl) });
+        // width is 0 until it's rendered.
+        $tw.parent().append($x);
+        var realWidth = $x.width();
+        var newerLeft = nl - realWidth;
+        $x.css('left', newerLeft + 'px');
+
+        // lower if after 1/10th of a second, this is better.
+        setTimeout(function(){
+          $x.addClass('qsat');
+          var e = nt + (h);
+          $x.css('top', e + 'px');
+          setTimeout(function() {
+            $x.remove();
+            $tw.text(next); // so it goes down correctly
+          }, 250);
+        }, 100);
+      }
+      function animateIncrement($tw, next) {
+        var p = $tw.position();
+        var h = $tw.height();
+        var w = $tw.width();
+        var nl = p.left + w; // start it all the way to the left, then figure out its width
+        var nt = p.top - h; // they have the same height, so just position it above by the height.
+        var $x = $('<span>', {text: "+1", style: getStyle(nt, nl) });
+        // width is 0 until it's rendered.
+        $tw.parent().append($x);
+        var realWidth = $x.width();
+        var newerLeft = nl - realWidth;
+        $x.css('left', newerLeft + 'px');
+
+        // lower if after ~1/4th of a second.
+        setTimeout(function(){
+          $x.addClass('qsat');
+          var e = nt + (h);
+          $x.css('top', e + 'px');
+          setTimeout(function() {
+            $x.remove();
+            $tw.text(next);
+          }, 250);
+        }, 100);
+      }
+
+      var curr = parseInt(this.text());
+      if (options === 'increment') {
+        var next = curr + 1;
+        animateIncrement(this, next);
+      } else if (options === 'decrement') {
+        var next = curr - 1;
+        animateDecrement(this, next);
+      }
+
+      return this;
+    };
+  }(jQuery));
+
+  $(function() {
+    $('#twitter_cnt').text(0);
+    $('#incrementBtn').on('click', function(event) {
+      event.preventDefault(); /* don't submit. */
+      $(this).blur();
+      $('#twitter_cnt').levelup('increment', 1);
+    });
+    $('#decrementBtn').on('click', function(event) {
+      event.preventDefault(); /* don't submit. */
+      $(this).blur();
+      $('#twitter_cnt').levelup('decrement', 1);
+    });
+  });
+</script>
