@@ -109,13 +109,15 @@ fun time writing this because JavaScript animations can be fun.</p>
       }
 
       var curr = parseInt(this.text());
-      if (options === 'increment') {
+      if (configOrCommand === 'increment') {
         var next = curr + commandArgument;
         animateIncrement(this, next);
-      } else if (options === 'decrement') {
+      } else if (configOrCommand === 'decrement') {
         var next = curr - commandArgument;
         animateDecrement(this, next);
       }
+
+      /* handle init here, I later plan to use other options, such as formatting. */
 
       return this;
     };
