@@ -45,13 +45,13 @@ fun time writing this because JavaScript animations can be fun.</p>
          * This is the only required option.
          * @type {number}
          */
-         start: 0,
+        start: 0,
 
-         /**
-          * This is the current value.
-          * @type {number}
-          */
-         value: 0,
+        /**
+         * This is the current value.
+         * @type {number}
+         */
+        value: 0,
 
         //-------------------------------------- protected properties and methods --------------------------------------
         /**
@@ -131,7 +131,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text($tw.data(dataName)); // so it goes down correctly
+                    $tw.text($tw.data(dataName).getValue()); // so it goes down correctly
                 }, 250);
             }, 100);
         }
@@ -156,7 +156,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text($tw.data(dataName));
+                    $tw.text($tw.data(dataName).getValue());
                 }, 250);
             }, 100);
         }
@@ -169,16 +169,14 @@ fun time writing this because JavaScript animations can be fun.</p>
             if (configOrCommand === 'increment') {
                 /* you want to update this here in case they call it a lot. */
                 return this.each(function() {
-                    var curr = parseInt($(this).data(dataName));
-                    var next = curr + commandArgument;
+                    var next = $(this).data(dataName).getValue() + commandArgument;
 
                     $(this).data(dataName).setValue(next);
                     animateIncrement($(this), commandArgument);
                 });
             } else if (configOrCommand === 'decrement') {
                 return this.each(function() {
-                    var curr = parseInt($(this).data(dataName));
-                    var next = curr - commandArgument;
+                    var next = $(this).data(dataName).getValue() - commandArgument;
 
                     $(this).data(dataName).setValue(next);
                     animateDecrement($(this), commandArgument);
@@ -200,17 +198,6 @@ fun time writing this because JavaScript animations can be fun.</p>
                 config.el = el;
                 instance = new LevelUp(config);
                 el.data(dataName, instance);
-
-                /*
-                // should have defaults.
-                if (config.start == undefined) {
-                    el.data(dataName, 0);
-                    el.text('0');
-                } else {
-                    el.data(dataName, config.start);
-                    el.text(config.start);
-                }
-                */
             }
         });
     };
