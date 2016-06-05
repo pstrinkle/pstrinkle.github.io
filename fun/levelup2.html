@@ -116,30 +116,40 @@ fun time writing this because JavaScript animations can be fun.</p>
           var next = curr + commandArgument;
           /* you want to update this here in case they call it a lot. */
           this.data(dataName, next);
-
           animateIncrement(this, next);
-
           return this;
         } else if (configOrCommand === 'decrement') {
           var next = curr - commandArgument;
           this.data(dataName, next);
-
           animateDecrement(this, next);
-
           return this;
         }
       }
 
-      this.data(dataName, 0);
-
       /* handle init here, I later plan to use other options, such as formatting. */
+      return this.each(function() {
+        var el = $(this), instance = el.data(dataName),
+          config = $.isPlainObject(configOrCommand) ? configOrCommand : {};
 
-      return this;
+        if (instance) {
+          /* they've set up some data values for us already to use. */
+        } else {
+          var initialConfig = $.extend({}, el.data());
+          config = $.extend(initialConfig, config);
+          
+          /* should have defaults. */
+          if (config.start == undefined) {
+            el.data(dataName, 0);
+          } else {
+            el.data(dataName, config.start);
+          }
+        }
+      });
     };
   }(jQuery));
 
   $(function() {
-    $('#twitter_cnt').text(0);
+    $('#twitter_cnt').levelup({'start' : 0});
 
     $('#incrementBtn').on('click', function(event) {
       $('#twitter_cnt').levelup('increment', 1);
