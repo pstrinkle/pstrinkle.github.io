@@ -20,10 +20,10 @@ fun time writing this because JavaScript animations can be fun.</p>
 <br />
 <div class="row">
   <div class="col-md-6">
-    <button id='incrementBtn' class="btn btn-default" type="submit">Increment</button>
+    <button id='incrementBtn' class="btn btn-default" type="button">Increment</button>
   </div>
   <div class="col-md-6">
-    <button id='decrementBtn' class="btn btn-default" type="submit">Decrement</button>
+    <button id='decrementBtn' class="btn btn-default" type="button">Decrement</button>
   </div>
 </div>
 
@@ -83,8 +83,8 @@ fun time writing this because JavaScript animations can be fun.</p>
         var realWidth = $x.width();
         var newerLeft = nl - realWidth;
         $x.css('left', newerLeft + 'px');
+
         // lower if after ~1/4th of a second.
-        console.log(JSON.stringify(trans, null, 2));
         setTimeout(function(){
           $x.css(trans);
           var e = nt + (h);
@@ -111,14 +111,11 @@ fun time writing this because JavaScript animations can be fun.</p>
 
   $(function() {
     $('#twitter_cnt').text(0);
+
     $('#incrementBtn').on('click', function(event) {
-      event.preventDefault(); /* don't submit. */
-      $(this).blur();
       $('#twitter_cnt').levelup('increment', 1);
     });
     $('#decrementBtn').on('click', function(event) {
-      event.preventDefault(); /* don't submit. */
-      $(this).blur();
       $('#twitter_cnt').levelup('decrement', 1);
     });
   });
