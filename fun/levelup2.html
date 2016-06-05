@@ -1,6 +1,6 @@
 ---
 layout: fun
-title: levelup
+title: levelup2
 ---
 
 <p>I wrote this as a +1, -1 animation for a view I needed, and it was fun.  Here's an attempt at reproducing it on this site.  I had a 
@@ -54,10 +54,10 @@ fun time writing this because JavaScript animations can be fun.</p>
         var realWidth = $x.width();
         var newerLeft = nl - realWidth;
         $x.css('left', newerLeft + 'px');
+        $x.addClass('qsat');
 
         // lower if after 1/10th of a second, this is better.
         setTimeout(function(){
-          $x.addClass('qsat');
           var e = nt + (h);
           $x.css('top', e + 'px');
           setTimeout(function() {
@@ -78,10 +78,9 @@ fun time writing this because JavaScript animations can be fun.</p>
         var realWidth = $x.width();
         var newerLeft = nl - realWidth;
         $x.css('left', newerLeft + 'px');
-
+        $x.addClass('qsat');
         // lower if after ~1/4th of a second.
         setTimeout(function(){
-          $x.addClass('qsat');
           var e = nt + (h);
           $x.css('top', e + 'px');
           setTimeout(function() {
