@@ -82,7 +82,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text(this.data(dataName)); // so it goes down correctly
+                    $tw.text($tw.data(dataName)); // so it goes down correctly
                 }, 250);
             }, 100);
         }
@@ -107,7 +107,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                 $x.css('top', e + 'px');
                 setTimeout(function() {
                     $x.remove();
-                    $tw.text(this.data(dataName));
+                    $tw.text($tw.data(dataName));
                 }, 250);
             }, 100);
         }
