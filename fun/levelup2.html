@@ -130,24 +130,24 @@ fun time writing this because JavaScript animations can be fun.</p>
         }
 
         /* handle init here, I later plan to use other options, such as formatting. */
-      return this.each(function() {
-          var el = $(this), instance = el.data(dataName),
-              config = $.isPlainObject(configOrCommand) ? configOrCommand : {};
+        return this.each(function() {
+            var el = $(this), instance = el.data(dataName),
+                config = $.isPlainObject(configOrCommand) ? configOrCommand : {};
 
-          if (instance) {
-              /* they've set up some data values for us already to use. */
-          } else {
-              var initialConfig = $.extend({}, el.data());
-              config = $.extend(initialConfig, config);
+            if (instance) {
+                /* they've set up some data values for us already to use. */
+            } else {
+                var initialConfig = $.extend({}, el.data());
+                config = $.extend(initialConfig, config);
           
-              /* should have defaults. */
-              if (config.start == undefined) {
-                  el.data(dataName, 0);
-              } else {
-                  el.data(dataName, config.start);
-              }
-          }
-      });
+                /* should have defaults. */
+                if (config.start == undefined) {
+                    el.data(dataName, 0);
+                } else {
+                    el.data(dataName, config.start);
+                }
+            }
+        });
     };
 }(jQuery));
 </script>
