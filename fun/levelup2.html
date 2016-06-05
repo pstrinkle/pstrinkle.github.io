@@ -62,13 +62,13 @@ fun time writing this because JavaScript animations can be fun.</p>
             return "font-weight: bold; position: absolute; top: " + top + "px; left: " + left + "px; z-index : 999;"
         }
 
-        function animateDecrement($tw, next) {
+        function animateDecrement($tw, update) {
             var p = $tw.position();
             var h = $tw.height();
             var w = $tw.width();            
             var nl = p.left + w; // start it all the way to the left, then figure out its width
             var nt = p.top; // they have the same height, so just position it at the same place.
-            var $x = $('<span>', {text: "-1", style: getStyle(nt, nl) });
+            var $x = $('<span>', {text: "-" + update, style: getStyle(nt, nl) });
             // width is 0 until it's rendered.
             $tw.parent().append($x);
             var realWidth = $x.width();
@@ -87,13 +87,13 @@ fun time writing this because JavaScript animations can be fun.</p>
             }, 100);
         }
 
-        function animateIncrement($tw, next) {
+        function animateIncrement($tw, update) {
             var p = $tw.position();
             var h = $tw.height();
             var w = $tw.width();
             var nl = p.left + w; // start it all the way to the left, then figure out its width
             var nt = p.top - h; // they have the same height, so just position it above by the height.
-            var $x = $('<span>', {text: "+1", style: getStyle(nt, nl) });
+            var $x = $('<span>', {text: "+" + update, style: getStyle(nt, nl) });
             // width is 0 until it's rendered.
             $tw.parent().append($x);
             var realWidth = $x.width();
@@ -123,12 +123,12 @@ fun time writing this because JavaScript animations can be fun.</p>
                 var next = curr + commandArgument;
                 /* you want to update this here in case they call it a lot. */
                 this.data(dataName, next);
-                animateIncrement(this, next);
+                animateIncrement(this, commandArgument);
                 return this;
             } else if (configOrCommand === 'decrement') {
                 var next = curr - commandArgument;
                 this.data(dataName, next);
-                animateDecrement(this, next);
+                animateDecrement(this, commandArgument);
                 return this;
             }
         }
