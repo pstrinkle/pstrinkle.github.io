@@ -45,6 +45,7 @@ fun time writing this because JavaScript animations can be fun.</p>
        * should support value not being provided, to default as 1
        */
 
+      var dataName = 'levelup';
       var trans = {'-webkit-transition' : 'all 0.25s',
                    '-moz-transition' : 'all 0.25s',
                    '-o-transition' : 'all 0.25s',
@@ -108,14 +109,28 @@ fun time writing this because JavaScript animations can be fun.</p>
         }, 100);
       }
 
-      var curr = parseInt(this.text());
-      if (configOrCommand === 'increment') {
-        var next = curr + commandArgument;
-        animateIncrement(this, next);
-      } else if (configOrCommand === 'decrement') {
-        var next = curr - commandArgument;
-        animateDecrement(this, next);
+      if (typeof configOrCommand == 'string') {
+        var curr = parseInt(this.data(dataName));
+
+        if (configOrCommand === 'increment') {
+          var next = curr + commandArgument;
+          /* you want to update this here in case they call it a lot. */
+          this.data(dataName, next);
+
+          animateIncrement(this, next);
+
+          return this;
+        } else if (configOrCommand === 'decrement') {
+          var next = curr - commandArgument;
+          this.data(dataName, next);
+
+          animateDecrement(this, next);
+
+          return this;
+        }
       }
+
+      this.data(dataName, 0);
 
       /* handle init here, I later plan to use other options, such as formatting. */
 
