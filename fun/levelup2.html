@@ -29,11 +29,22 @@ fun time writing this because JavaScript animations can be fun.</p>
 
 <script>
   (function ($) {
-    $.fn.levelup = function(options, value) {
+    /**
+     * Set up an animated incrementer/decrementer.
+     * 
+     * @param configOrCommand - Config object or command name
+     *     Example: { ... };
+     *     you may set any public property (see above);
+     *     you may use .levelup('increment', incrementWith) to increment the value
+     *     you may use .levelup('decrement', decrementWith) to decrement the value
+     *
+     * @param commandArgument - Some commands (like 'increment') may require an argument
+     */
+    $.fn.levelup = function(configOrCommand, commandArgument) {
       /* Also need to come up with some options and defaults. :D
        * should support value not being provided, to default as 1
        */
-       
+
       var trans = {'-webkit-transition' : 'all 0.25s',
                    '-moz-transition' : 'all 0.25s',
                    '-o-transition' : 'all 0.25s',
@@ -71,6 +82,7 @@ fun time writing this because JavaScript animations can be fun.</p>
           }, 250);
         }, 100);
       }
+
       function animateIncrement($tw, next) {
         var p = $tw.position();
         var h = $tw.height();
@@ -98,10 +110,10 @@ fun time writing this because JavaScript animations can be fun.</p>
 
       var curr = parseInt(this.text());
       if (options === 'increment') {
-        var next = curr + 1;
+        var next = curr + commandArgument;
         animateIncrement(this, next);
       } else if (options === 'decrement') {
-        var next = curr - 1;
+        var next = curr - commandArgument;
         animateDecrement(this, next);
       }
 
