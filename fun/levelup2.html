@@ -36,6 +36,49 @@ fun time writing this because JavaScript animations can be fun.</p>
  * License: Apache 2
  */
 (function ($) {
+    function LevelUp(config) {
+        this.init(config);
+    }
+
+    LevelUp.prototype = {
+        /**
+         * This is the only required option.
+         * @type {number}
+         */
+         start: 0,
+
+        //-------------------------------------- protected properties and methods --------------------------------------
+        /**
+         * @protected
+         */
+        constructor: LevelUp,
+
+        /**
+         * Container element. Should be passed into constructor config
+         * @protected
+         * @type {jQuery}
+         */
+        el: null,
+
+        /**
+         * Init/re-init the object
+         * @param {object} config - Config
+         */
+        init: function(config) {
+            $.extend(this, config);
+        },
+
+        getValue: function() {
+            return this.value;
+        },
+
+        setValue: function(newValue) {
+            this.value = newValue;
+        }
+    }
+    
+    //-------------------------------------------- Initiating jQuery plugin --------------------------------------------
+
     /**
      * Set up an animated incrementer/decrementer.
      * 
@@ -123,7 +166,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                     var curr = parseInt($(this).data(dataName));
                     var next = curr + commandArgument;
 
-                    $(this).data(dataName, next);
+                    $(this).data(dataName).setValue(next);
                     animateIncrement($(this), commandArgument);
                 });
             } else if (configOrCommand === 'decrement') {
@@ -131,7 +174,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                     var curr = parseInt($(this).data(dataName));
                     var next = curr - commandArgument;
 
-                    $(this).data(dataName, next);
+                    $(this).data(dataName).setValue(next);
                     animateDecrement($(this), commandArgument);
                 });
             }
@@ -144,11 +187,16 @@ fun time writing this because JavaScript animations can be fun.</p>
 
             if (instance) {
                 /* they've set up some data values for us already to use. */
+                instance.init(config);
             } else {
                 var initialConfig = $.extend({}, el.data());
                 config = $.extend(initialConfig, config);
-          
-                /* should have defaults. */
+                config.el = el;
+                instance = new LevelUp(config);
+                el.data(dataName, instance);
+
+                /*
+                // should have defaults.
                 if (config.start == undefined) {
                     el.data(dataName, 0);
                     el.text('0');
@@ -156,6 +204,7 @@ fun time writing this because JavaScript animations can be fun.</p>
                     el.data(dataName, config.start);
                     el.text(config.start);
                 }
+                */
             }
         });
     };
