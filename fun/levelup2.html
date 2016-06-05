@@ -114,9 +114,11 @@ fun time writing this because JavaScript animations can be fun.</p>
 
     $('#incrementBtn').on('click', function(event) {
       $('#twitter_cnt').levelup('increment', 1);
+      return false;
     });
     $('#decrementBtn').on('click', function(event) {
       $('#twitter_cnt').levelup('decrement', 1);
+      return false;
     });
   });
 </script>
