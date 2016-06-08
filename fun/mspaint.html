@@ -51,7 +51,7 @@ $(function() {
         }
 
         $.fn.paintbox = function(configOrCommand) {
-        	var dataName = 'paintbox';
+            var dataName = 'paintbox';
 
             /* handle init here, I later plan to use other options, such as 
              * formatting.
@@ -68,7 +68,7 @@ $(function() {
                     config = $.extend(initialConfig, config);
                     config.el = el;
 
-                    instance = new LevelUp(config);
+                    instance = new PaintBox(config);
                     el.data(dataName, instance);
 
                     el.append($('<div>', {id: 'pen_box', style: 'clear:both;'}));
