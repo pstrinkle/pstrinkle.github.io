@@ -16,6 +16,13 @@ I'd like to add:
   <li>zoom-in/out</li>
 </ul>
 
+<div class='row'>
+  <input id='rows' type='text' placeholder='rows' value="40" />
+  <input id='cols' type='text' placeholder='cols' value="40" />
+  <button id='resizeit' type='button' class='btn'>resize</button>
+</div>
+
+<br />
 <div id='container'></div>
 
 <script>
@@ -164,5 +171,19 @@ $(function() {
 
     $('#container').paintbox({});
 
+    $('#resizeit').on('click', function(event) {
+        var rows = parseInt($('#rows').val());
+        var cols = parseInt($('#cols').val());
+
+        if (rows == '') {
+            return;
+        }
+        if (cols == '') {
+            return;
+        }
+
+        $('#container').empty();
+        $('#container').paintbox({rows: rows, cols: cols});
+    });
 });
 </script>
