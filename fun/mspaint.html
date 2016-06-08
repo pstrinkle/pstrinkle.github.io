@@ -40,9 +40,13 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     var master_height = rows * 10;
     $('#master_box').css('width', master_width + 'px');
     $('#master_box').css('height', master_height + 'px');
-    
+
     $('.box').hover(function(event) {
+      /* if pen is selected, and mousedown has been activated, then we draw, otherwise we temporarily hover. */
       $(this).css('border', '1px solid red');
+    }, function(event) {
+      /* if pen is selected, and mousedown has been activated, don't undo things. */
+      $(this).css('border', 'none');
     });
   });
 </script>
