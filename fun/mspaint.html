@@ -73,6 +73,7 @@ $(function() {
                     el.append($('<div>', {id: 'master_box', style: 'clear:both;'}));
 
                     var $dest = $('#master_box');
+                    var $pens = $('#pen_box');
                     var i = 0, j = 0;
                     var itm = 'box';
 
@@ -123,6 +124,8 @@ $(function() {
                     $.each(colors, function(index, element) {
                         var $color = $('<div>', {id: element, style: "float:left"});
                         var $second = $('<div>', {style: "float:left"});
+                        $pens.append($color);
+                        $pens.append($second);
                     });
 
                     /* just do this next. */
