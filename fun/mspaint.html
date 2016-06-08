@@ -8,17 +8,19 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
 
 <div id='pen_box'>
   <!-- could use a class to simplify. -->
-  <div id='black' style='background-color:black;border:1px solid white;'></div>
+  <div id='black' style=''></div>
   <div></div>
-  <div id='green' style='background-color:green;border:1px solid black;'></div>
+  <div id='red'></div>
   <div></div>
-  <div id='blue' style='background-color:blue;border:1px solid black;'></div>
+  <div id='green'></div>
   <div></div>
-  <div id='white' style='background-color:white;border:1px solid black;'></div>
+  <div id='blue'></div>
   <div></div>
-  <div id='yellow' style='background-color:yellow;border:1px solid black;'></div>
+  <div id='white'></div>
   <div></div>
-  <div id='pink' style='background-color:pink;border:1px solid black;'></div>
+  <div id='yellow'></div>
+  <div></div>
+  <div id='pink'></div>
 </div>
 <div id='master_box'>
 </div>
@@ -66,6 +68,17 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     $.each($('#pen_box').children(), function(index, element) {
       $(element).css('width', '10px');
       $(element).css('height', '10px');
+      $(element).css('float', 'left');
+      
+      var id = $(element).attr('id');
+      if (id) {
+        $(element).css('background-color', id);
+        if (id === 'black') {
+          $(element).css('border', '1px solid white');
+        } else {
+          $(element).css('border', '1px solid black');
+        }
+      }
     });
   });
 </script>
