@@ -28,6 +28,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
 <script>
   $(function() {
     var penColor = 'black';
+    var penDown = false;
 
     var clicked = function(event) {
       $(this).css('background-color', penColor);
@@ -70,6 +71,10 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
        * draw, otherwise we temporarily hover.
        */
       $(this).css('border', '1px solid red');
+
+      if (penDown) {
+        $(this).css('background-color', penColor);
+      }
     }, function(event) {
       /* if pen is selected, and mousedown has been activated, don't undo 
        * things.
@@ -94,6 +99,15 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
           $(element).css('border', '1px solid black');
         }
       }
+    });
+    
+    $dest.on('mousedown', function(event) {
+      console.log('down');
+      penDown = true;
+    });
+    $dest.on('mouseup', function(event) {
+      console.log('up');
+      penDown = false;
     });
   });
 </script>
