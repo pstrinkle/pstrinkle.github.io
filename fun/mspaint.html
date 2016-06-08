@@ -20,6 +20,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     var i = 0, j = 0;
     
     var $dest = $('#master_box');
+    var itm = 'box';
 
     for (i = 0; i < rows; i++) {
       for (j = 0; j < cols; j++) {
@@ -30,6 +31,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
         $n.css('float', 'left');
         $n.attr('id', i + ',' + j);
         $n.on('click', clicked);
+        $n.addClass(itm);
         $dest.append($n);
       }
     }
@@ -38,5 +40,9 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     var master_height = rows * 10;
     $('#master_box').css('width', master_width + 'px');
     $('#master_box').css('height', master_height + 'px');
+    
+    $('.box').hover(function(event) {
+      $(this).css('border', '1px solid red');
+    });
   });
 </script>
