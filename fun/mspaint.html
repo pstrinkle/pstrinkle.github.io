@@ -50,6 +50,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
         $n.css('height', '10px');
         $n.css('background-color', 'white');
         $n.css('float', 'left');
+        $n.css('display', 'table-cell');
         $n.attr('id', i + ',' + j);
         $n.on('click', clicked);
         $n.addClass(itm);
@@ -69,6 +70,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
       $(element).css('width', '10px');
       $(element).css('height', '10px');
       $(element).css('float', 'left');
+      $(element).css('display', 'table-cell');
       
       var id = $(element).attr('id');
       if (id) {
