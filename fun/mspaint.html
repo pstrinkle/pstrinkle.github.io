@@ -17,9 +17,9 @@ I'd like to add:
 </ul>
 
 <div class='row'>
-  <input id='rows' type='text' placeholder='rows' value="40" />
-  <input id='cols' type='text' placeholder='cols' value="40" />
-  <button id='resizeit' type='button' class='btn'>resize</button>
+  <input id='rows' class="form-control" type='text' placeholder='rows' value="40" />
+  <input id='cols' class="form-control" type='text' placeholder='cols' value="40" />
+  <button id='resizeit' type='button' class='btn btn-default'>resize</button>
 </div>
 
 <br />
@@ -56,6 +56,8 @@ $(function() {
             return this.each(function() {
                 var el = $(this), instance = el.data(dataName),
                     config = $.isPlainObject(configOrCommand) ? configOrCommand : {};
+
+                console.log('entered!: ' + JSON.stringify(config));
 
                 if (instance) {
                     /* they've set up some data values for us already to use. */
