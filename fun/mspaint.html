@@ -17,9 +17,15 @@ I'd like to add:
 </ul>
 
 <div class='row'>
-  <input id='rows' class="form-control" type='text' placeholder='rows' value="40" />
-  <input id='cols' class="form-control" type='text' placeholder='cols' value="40" />
-  <button id='resizeit' type='button' class='btn btn-default'>resize</button>
+  <div class='col-md-4'>
+    <input id='rows' class="form-control" type='text' placeholder='rows' value="40" />
+  </div>
+  <div class='col-md-4'>
+    <input id='cols' class="form-control" type='text' placeholder='cols' value="40" />
+  </div>
+  <div class='col-md-4'>
+    <button id='resizeit' type='button' class='btn btn-default'>resize</button>
+  </div>
 </div>
 
 <br />
@@ -69,6 +75,8 @@ $(function() {
 
                     instance = new PaintBox(config);
                     el.data(dataName, instance);
+
+                    console.log('continuing!: ' + JSON.stringify(instance));
 
                     var clicked = function(event) {
                         /* click's this is the individual element */
