@@ -100,8 +100,8 @@ $(function() {
                 }
 
                 $('.box').hover(function(event) {
-                    /* if pen is selected, and mousedown has been activated, then we 
-                     * draw, otherwise we temporarily hover.
+                    /* if pen is selected, and mousedown has been activated, 
+                     * then we draw, otherwise we temporarily hover.
                      */                        
                     $(this).css('border', '1px solid ' + instance.penColor);
 
@@ -109,8 +109,8 @@ $(function() {
                         $(this).css('background-color', instance.penColor);
                     }
                 }, function(event) {
-                    /* if pen is selected, and mousedown has been activated, don't undo 
-                     * things.
+                    /* if pen is selected, and mousedown has been activated, 
+                     * don't undo things.
                      */
                     $(this).css('border', 'none');
                 });
@@ -199,7 +199,6 @@ $(function() {
         }
 
         $('#container').empty();
-        //$('#container').removeData();
         $('#container').paintbox({rows: rows, cols: cols});
     });
 });
