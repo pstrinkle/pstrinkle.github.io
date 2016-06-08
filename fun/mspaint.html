@@ -1,0 +1,28 @@
+---
+layout: fun
+title: ms paint
+---
+<p>
+An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
+</p>
+
+<div id='master_box'>
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+</div>
+
+<script>
+  $(function() {
+    var width = 4;
+    var height = 4;
+    var i = 0, j = 0;
+    $.each($('#master_box').children(), function(index, element) {
+      $(element).attr('id', i);
+      i += 1;
+      $(element).css('height', '10px');
+      $(element).css('width', '10px');
+    });
+  });
+</script>
