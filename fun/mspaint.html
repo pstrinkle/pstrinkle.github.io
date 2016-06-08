@@ -102,11 +102,12 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     });
     
     $dest.on('mousedown', function(event) {
-      console.log('down');
       penDown = true;
     });
     $dest.on('mouseup', function(event) {
-      console.log('up');
+      penDown = false;
+    });
+    $dest.on('mouseleave', function(event) {
       penDown = false;
     });
   });
