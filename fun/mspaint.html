@@ -6,7 +6,7 @@ title: ms paint
 An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
 </p>
 
-<div id='pen_box'>
+<div id='pen_box' style='display:block;'>
   <!-- could use a class to simplify. -->
   <div id='black' style=''></div>
   <div></div>
@@ -22,7 +22,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
   <div></div>
   <div id='pink'></div>
 </div>
-<div id='master_box'>
+<div id='master_box' style='display:block;'>
 </div>
 
 <script>
@@ -50,7 +50,8 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
         $n.css('height', '10px');
         $n.css('background-color', 'white');
         $n.css('float', 'left');
-        $n.css('display', 'table-cell');
+        $n.css('display', 'inline');
+
         $n.attr('id', i + ',' + j);
         $n.on('click', clicked);
         $n.addClass(itm);
@@ -70,7 +71,7 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
       $(element).css('width', '10px');
       $(element).css('height', '10px');
       $(element).css('float', 'left');
-      $(element).css('display', 'table-cell');
+      $(element).css('display', 'inline');
       
       var id = $(element).attr('id');
       if (id) {
