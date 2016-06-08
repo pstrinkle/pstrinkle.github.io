@@ -15,14 +15,26 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
 
 <script>
   $(function() {
+    var clicked = function(event) {
+      $(this).css('background-color', 'black');
+    };
+    
     var width = 4;
     var height = 4;
     var i = 0, j = 0;
     $.each($('#master_box').children(), function(index, element) {
+      $(element).css('width', '10px');
+      $(element).css('height', '10px');
+      $(element).css('background-color', 'white');
+      $(element).csS('float', 'left');
+
       $(element).attr('id', i);
       i += 1;
-      $(element).css('height', '10px');
-      $(element).css('width', '10px');
+
+      $(element).on('click', clicked);
     });
+
+    $('#master_box').css('width', '40px');
+    $('#master_box').css('height', '40px');
   });
 </script>
