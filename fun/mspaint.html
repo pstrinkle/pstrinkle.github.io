@@ -6,6 +6,20 @@ title: ms paint
 An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
 </p>
 
+<div id='pen_box'>
+  <!-- could use a class to simplify. -->
+  <div id='black' style='color:black;border:1px solid white;'></div>
+  <div></div>
+  <div id='green' style='color:green;border:1px solid black;'></div>
+  <div></div>
+  <div id='blue' style='color:blue;border:1px solid black;'></div>
+  <div></div>
+  <div id='white' style='color:white;border:1px solid black;'></div>
+  <div></div>
+  <div id='yellow' style='color:yellow;border:1px solid black;'></div>
+  <div></div>
+  <div id='pink' style='color:pink;border:1px solid black;'></div>
+</div>
 <div id='master_box'>
 </div>
 
@@ -18,9 +32,14 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
     var cols = 40;
     var rows = 40;
     var i = 0, j = 0;
-    
+
     var $dest = $('#master_box');
     var itm = 'box';
+
+    var master_width = cols * 10;
+    var master_height = rows * 10;
+    $dest.css('width', master_width + 'px');
+    $dest.css('height', master_height + 'px');
 
     for (i = 0; i < rows; i++) {
       for (j = 0; j < cols; j++) {
@@ -36,17 +55,17 @@ An attempt at making a fun pixel-driven paint utility in JS, for the fun of it.
       }
     }
 
-    var master_width = cols * 10;
-    var master_height = rows * 10;
-    $('#master_box').css('width', master_width + 'px');
-    $('#master_box').css('height', master_height + 'px');
-
     $('.box').hover(function(event) {
       /* if pen is selected, and mousedown has been activated, then we draw, otherwise we temporarily hover. */
       $(this).css('border', '1px solid red');
     }, function(event) {
       /* if pen is selected, and mousedown has been activated, don't undo things. */
       $(this).css('border', 'none');
+    });
+
+    $.each($('#pen_box').children(), function(index, element) {
+      $(element).css('width', '10px');
+      $(element).css('height', '10px');
     });
   });
 </script>
