@@ -11,20 +11,16 @@ title: wedding
     var countDown = moment.tz("2016-10-09 00:00", "America/New_York");
 
     $('#countdown').countdown(countDown.toDate(), function(event) {
-            var format = '';
+      var output = event.strftime(''
+        + '<span>%-w</span> week%!w '
+        + '<span>%-d</span> day%!d '
+        + '<span>%H</span> hr '
+        + '<span>%M</span> min '
+        + '<span>%S</span> sec'
+        + ' to Escape :P');
 
-            if (event.offset.totalDays > 0) {
-                format = '<span>%-D</span> Day%!D to Escape :P';
-            } else if (event.offset.hours > 0) {
-                format = '<span>%-H</span> Hour%!H to Escape :P';
-            } else if (event.offset.minutes > 0) {
-                format = '<span>%-M</span> Minute%!M to Escape :P';
-            } else if (event.offset.seconds > 0) {
-                format = '<span>%-S</span> Second%!S to Escape :P';
-            }
-
-            $(this).html(event.strftime(format));
-        });
+      $(this).html(output);
+    });
   });
 </script>
 
