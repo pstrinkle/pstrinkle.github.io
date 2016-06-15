@@ -22,3 +22,9 @@ ul.github li:before {
     content: "\f09b";
     font-size: 16px;
 }
+
+ul.shuttle li:before { 
+    font-family: FontAwesome;
+    content: "\f197";
+    font-size: 16px;
+}
