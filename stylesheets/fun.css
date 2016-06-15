@@ -16,3 +16,8 @@
  * from growing the parent.
  */
 .animated-jump-out-z { position: absolute; z-index: 999; }
+
+ul.github li:before { 
+    font-family: FontAwesome;
+    content: "\f09b";
+}
