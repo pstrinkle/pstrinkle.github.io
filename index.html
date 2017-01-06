@@ -6,22 +6,23 @@ title: .
   <h1>{{ page.title }}</h1>
 </header>
 
-<section>
-  <h3>Research Interests</h3>
-  <ul>
-   <li>Probabilistic Modeling</li>
-   <li>Networking</li>
-   <li>Operating Systems</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Worklife</h3>
-  <ul class='shuttle'>
-    <li>Software Engineer @ <a href="https://www.google.com/" target="_blank">Google</a></li>
-  </ul>
-</section>
-
+<div class="col-md-6">
+  <section>
+    <h3>Research Interests</h3>
+    <ul>
+      <li>Probabilistic Modeling</li>
+      <li>Networking</li>
+      <li>Operating Systems</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Worklife</h3>
+    <ul class='shuttle'>
+      <li>Software Engineer @ <a href="https://www.google.com/" target="_blank">Google</a></li>
+    </ul>
+  </section>
+</div>
+<div class="col-md-6">
 <section>
   <h3>Projects</h3>
   <ul>
@@ -51,8 +52,9 @@ title: .
   </ul>
   
   <h4>AngularJS Fun</h4>
-  <p>Just some fun.</p>
+  <p>The following are some AngularJS plugins or applications.  Although all my django-rest-framework applications above do come with AngularJS UIs.
   <ul class='github'>
+    <li><a href="https://github.com/pstrinkle/dynamic-class" target="_blank">dynamic-class</a> - An AngularJS directive such that an element has a class added or removed based on its value.</li>
     <li><a href="/santa-angular-app" target="_blank">Santa Angular App</a> - An AngularJS app that lets someone pretend to submit a wishlist to Santa.  The project demonstrates how to use Angular router and was just fun.</li>
   </ul>
 
@@ -107,3 +109,4 @@ title: .
     <li>P. Trinkle, Better Google Searching for Non-Malicious Users <a href="http://userpages.umbc.edu/~tri1/docs/googleshort.pdf" title="Better Google Searching for Non-Malicious Users" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></li>
   </ul>
 </section>
+</div>
